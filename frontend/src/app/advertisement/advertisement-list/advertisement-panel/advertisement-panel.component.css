@@ -1,0 +1,43 @@
+@import "../../../../variables.css";
+
+.advertisment-panel{
+  display: flex;
+  flex-direction: column;
+  border: 0.2em solid var(--background-color-header);
+  border-radius: 1em;
+  background-color: var(--background-advertisment);
+  margin: 1em;
+}
+
+.advertisment-header{
+  display: flex;
+  justify-content: flex-end;
+  align-items: baseline;
+  margin: 0 var(--side-margin);
+}
+
+.advertisment-title{
+  width: 100%;
+  align-self: center;
+  margin-top: 0.5em;
+  font-size: var(--font-size-heading);
+  font-style: italic;
+}
+
+.advertisment-telephone{
+  align-self: center;
+  justify-self: center;
+}
+
+.phone-icon{
+  font-weight: bold;
+  color: var(--warnign-color);
+  font-size: var(--font-size-heading);
+}
+
+.advertisment-content{
+  height: 100%;
+  margin: var(--side-margin);
+  text-align: justify;
+  word-wrap: break-word;
+}

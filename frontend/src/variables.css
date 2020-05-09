@@ -1,0 +1,12 @@
+:root{
+  --background-color: #EFEBE9;
+  --background-color-header: #689F38;
+  --background-advertisment: #ffffff;
+  --white-color: #ffffff;
+  --warnign-color: #FF0033;
+
+  --side-margin: 0.9em;
+
+  --side-padding: 0.5em;
+  --font-size-heading: 1.7em;
+}

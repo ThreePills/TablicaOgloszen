@@ -1,0 +1,7 @@
+<section class="advertisment-section">
+  <div nz-row [nzGutter]="[hGutter, vGutter]">
+    <app-advertisement-panel nz-col class="advertisment-row" [nzSpan]="24 / columns" *ngFor="let advertisment of advertisments" [advertisment]="advertisment">
+    </app-advertisement-panel>
+  </div>
+  <p *ngIf="!advertisments || advertisments.length === 0">No advertisments found</p>
+</section>

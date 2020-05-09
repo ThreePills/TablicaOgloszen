@@ -1,1 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+@import "variables.css";
+@import "~ng-zorro-antd/ng-zorro-antd.min.css";
+@import "~bootstrap/dist/css/bootstrap.css";
+
+body{
+  margin: 0;
+  background-color: var(--background-color) !important;
+}
+header {
+  background-color: var(--background-color-header);
+  border-radius: 0.5em;
+  color: var(--white-color);
+  text-align: center;
+  font-weight: bold;
+  font-size: 2em;
+  padding: 0.8em;
+  margin: 1em;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
