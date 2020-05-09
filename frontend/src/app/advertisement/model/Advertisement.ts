@@ -1,4 +1,4 @@
-export interface Advertisment {
+export interface Advertisement {
   id?: string;
   title: string;
   telephone: string;

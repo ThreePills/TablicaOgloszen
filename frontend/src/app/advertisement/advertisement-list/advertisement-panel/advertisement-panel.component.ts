@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Advertisment} from "../../model/Advertisment";
+import {Advertisement} from "../../model/Advertisement";
 
 @Component({
   selector: 'app-advertisement-panel',
@@ -9,11 +9,12 @@ import {Advertisment} from "../../model/Advertisment";
 export class AdvertisementPanelComponent implements OnInit {
 
   @Input()
-  advertisment: Advertisment
+  advertisement: Advertisement
 
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.advertisement);
   }
 
 }

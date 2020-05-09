@@ -1,4 +1,4 @@
-<section class="advertisment-section">
+<section class="advertisement-section">
   <div class="columns-button">Widok:
     <nz-radio-group class="button-group" [(ngModel)]="columns" nzButtonStyle="solid">
       <label class="label-column" nz-radio-button nzValue="1">1</label>
@@ -6,8 +6,9 @@
     </nz-radio-group>
   </div>
   <div nz-row [nzGutter]="[hGutter, vGutter]">
-    <app-advertisement-panel nz-col class="advertisment-row" [nzSpan]="24 / getColumnsNumber(columns)" *ngFor="let advertisment of advertisments" [advertisment]="advertisment">
+    <app-advertisement-panel nz-col class="advertisement-row" [nzSpan]="24 / getColumnsNumber(columns)" *ngFor="let advertisement of advertisements"
+                             [advertisement]="advertisement">
     </app-advertisement-panel>
   </div>
-  <p *ngIf="!advertisments || advertisments.length === 0">No advertisments found</p>
+  <p *ngIf="!advertisements || advertisements.length === 0">No advertisements found</p>
 </section>
