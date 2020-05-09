@@ -11,7 +11,7 @@ import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
-import {NzGridModule, NzIconModule, NzToolTipModule} from "ng-zorro-antd";
+import {NzButtonModule, NzGridModule, NzIconModule, NzRadioModule, NzToolTipModule} from "ng-zorro-antd";
 
 registerLocaleData(en);
 
@@ -28,7 +28,9 @@ registerLocaleData(en);
     BrowserAnimationsModule,
     NzGridModule,
     NzIconModule,
-    NzToolTipModule
+    NzToolTipModule,
+    NzRadioModule,
+    NzButtonModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]

@@ -1,4 +1,39 @@
 .advertisment-section {
   margin: 2em;
+  display: flex;
+  flex-direction: column;
+}
+
+.columns-button{
+  align-self: flex-end;
+  margin: var(--side-margin);
+}
+
+.button-group{
+  margin-left: var(--side-margin);
+}
+
+.label-column:active{
+  background: var(--background-color-header) !important;
+  border-color: var(--background-color-header) !important;
+}
+
+.label-column:hover{
+  color: var(--background-color-header) !important;
+  border-color: var(--background-color-header) !important;
+}
+
+.ant-radio-group-solid .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled){
+  background: var(--background-color-header) !important;
+  border-color: var(--background-color-header) !important;
+}
+
+.ant-radio-group-solid .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):hover{
+  color: var(--white-color) !important;
+}
+
+.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled)::before {
+  background: var(--background-color-header) !important;
+  border-color: var(--background-color-header) !important;
 }
 
