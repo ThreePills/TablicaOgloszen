@@ -1,6 +1,6 @@
-import {Advertisement} from "./Advertisement";
+import {Offer} from "./Offer";
 
-export class NewAdvertisement implements Advertisement {
+export class NewOffer implements Offer {
   id: string;
   title: string;
   telephone: string;

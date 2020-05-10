@@ -1,22 +1,22 @@
 @import "../../../../variables.css";
 
-.advertisement-panel{
+.offer-panel{
   display: flex;
   flex-direction: column;
   border: 0.2em solid var(--background-color-header);
   border-radius: 1em;
-  background-color: var(--background-advertisement);
+  background-color: var(--background-offer);
   margin: 1em;
 }
 
-.advertisement-header{
+.offer-header{
   display: flex;
   justify-content: flex-end;
   align-items: baseline;
   margin: 0 var(--side-margin);
 }
 
-.advertisement-title{
+.offer-title{
   width: 100%;
   align-self: center;
   margin-top: 0.5em;
@@ -24,7 +24,7 @@
   font-style: italic;
 }
 
-.advertisement-telephone{
+.offer-telephone{
   align-self: center;
   justify-self: center;
 }
@@ -35,7 +35,7 @@
   font-size: var(--font-size-heading);
 }
 
-.advertisement-content{
+.offer-content{
   height: 100%;
   margin: var(--side-margin);
   text-align: justify;

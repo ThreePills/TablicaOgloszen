@@ -2,8 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { AdvertisementListComponent } from './advertisement/advertisement-list/advertisement-list.component';
-import { AdvertisementPanelComponent } from './advertisement/advertisement-list/advertisement-panel/advertisement-panel.component';
+import { OfferListComponent } from './offer/offer-list/offer-list.component';
+import { OfferPanelComponent } from './offer/offer-list/offer-panel/offer-panel.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,8 +18,8 @@ registerLocaleData(en);
 @NgModule({
   declarations: [
     AppComponent,
-    AdvertisementListComponent,
-    AdvertisementPanelComponent
+    OfferListComponent,
+    OfferPanelComponent
   ],
   imports: [
     BrowserModule,
