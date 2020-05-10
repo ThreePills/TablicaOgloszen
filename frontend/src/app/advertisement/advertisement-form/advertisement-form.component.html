@@ -1,0 +1,39 @@
+<section class="advertisement-section">
+  <form [formGroup]="advertisementForm" (ngSubmit)="onSubmit(advertisementForm.value)">
+    <h1>Dodaj nowe ogłoszenie</h1>
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input class="form-control" id="title" type="text" formControlName="title" [required]="advertisementForm">
+
+      <div *ngIf="title.invalid && (title.dirty || title.touched)"
+           class="alert alert-danger">
+        <div *ngIf="title.errors.required">
+          Title is required.
+        </div>
+      </div>
+
+
+      <label for="telephone">Telephone number</label>
+      <input class="form-control" id="telephone" type="tel" formControlName="telephone" [required]="advertisementForm">
+
+      <div *ngIf="telephone.invalid && (telephone.dirty || telephone.touched)"
+           class="alert alert-danger">
+        <div *ngIf="telephone.errors.required">
+          Telephone number is required.
+        </div>
+      </div>
+
+      <label for="content">Content</label>
+      <textarea class="form-control" id="content" type="text" formControlName="content" [required]="advertisementForm"></textarea>
+
+      <div *ngIf="content.invalid && (content.dirty || content.touched)"
+           class="alert alert-danger">
+        <div *ngIf="content.errors.required">
+          Content is required.
+        </div>
+      </div>
+    </div>
+
+    <button class="button btn btn-success" type="submit" [disabled]="!advertisementForm.valid">Save</button>
+  </form>
+</section>

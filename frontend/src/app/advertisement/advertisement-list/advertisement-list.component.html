@@ -1,10 +1,14 @@
 <section class="advertisement-section">
-  <div class="columns-button">Widok:
-    <nz-radio-group class="button-group" [(ngModel)]="columns" nzButtonStyle="solid">
-      <label class="label-column" nz-radio-button nzValue="1">1</label>
-      <label class="label-column" nz-radio-button nzValue="3">3</label>
-    </nz-radio-group>
+  <div class="buttons">
+    <a routerLink="advertisements/create" class="btn btn-success button-group">Dodaj nowe ogłoszenie</a>
+    <div class="button-group">Widok:
+      <nz-radio-group class="button-group" [(ngModel)]="columns" nzButtonStyle="solid">
+        <label class="label-column" nz-radio-button nzValue="1">1</label>
+        <label class="label-column" nz-radio-button nzValue="3">3</label>
+      </nz-radio-group>
+    </div>
   </div>
+
   <div nz-row [nzGutter]="[hGutter, vGutter]">
     <app-advertisement-panel nz-col class="advertisement-row" [nzSpan]="24 / getColumnsNumber(columns)" *ngFor="let advertisement of advertisements"
                              [advertisement]="advertisement">
