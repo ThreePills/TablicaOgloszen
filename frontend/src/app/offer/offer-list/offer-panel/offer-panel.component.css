@@ -16,15 +16,32 @@
   margin: 0 var(--side-margin);
 }
 
-.offer-title{
+.offer-left-header{
   width: 100%;
   align-self: center;
   margin-top: 0.5em;
+}
+
+.offer-title{
+  margin: 0;
   font-size: var(--font-size-heading);
   font-style: italic;
 }
 
-.offer-telephone{
+.offer-localization{
+  margin: 0;
+  font-style: italic;
+  font-size: var(--font-size-localization);
+}
+
+
+.offer-phoneNumber{
+  align-self: center;
+  justify-self: center;
+  margin-left: var(--side-margin);
+}
+
+.offer-email{
   align-self: center;
   justify-self: center;
 }
@@ -35,9 +52,22 @@
   font-size: var(--font-size-heading);
 }
 
+.email-icon{
+  font-weight: bold;
+  color: var(--email-color);
+  font-size: var(--font-size-heading);
+}
+
 .offer-content{
   height: 100%;
   margin: var(--side-margin);
   text-align: justify;
   word-wrap: break-word;
+}
+
+.offer-author{
+  align-self: flex-end;
+  font-style: italic;
+  font-size: var(--font-size-signature);
+  margin-right: var(--side-margin);
 }
