@@ -12,7 +12,7 @@ import { en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import {NzButtonModule, NzGridModule, NzIconModule, NzRadioModule, NzToolTipModule} from "ng-zorro-antd";
-import { AdvertisementFormComponent } from './advertisement/advertisement-form/advertisement-form.component';
+import { OfferFormComponent } from './offer/offer-form/offer-form.component';
 import {AppRoutingModule} from "./app-routing.module";
 
 registerLocaleData(en);
@@ -22,7 +22,7 @@ registerLocaleData(en);
     AppComponent,
     OfferListComponent,
     OfferPanelComponent,
-    AdvertisementFormComponent
+    OfferFormComponent
   ],
   imports: [
     BrowserModule,

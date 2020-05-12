@@ -1,20 +1,19 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {AdvertisementListComponent} from "./advertisement/advertisement-list/advertisement-list.component";
-import {AdvertisementFormComponent} from "./advertisement/advertisement-form/advertisement-form.component";
+import {OfferFormComponent} from "./offer/offer-form/offer-form.component";
+import {OfferListComponent} from "./offer/offer-list/offer-list.component";
 
 
 const routes: Routes = [
   {
     path: '',
-    component: AdvertisementListComponent,
+    component: OfferListComponent,
   },
   {
-    path: 'advertisements/create',
-    component: AdvertisementFormComponent,
+    path: 'offers/create',
+    component: OfferFormComponent,
   },
-  // {path: '', redirectTo: 'advertisements', pathMatch: 'full'},
-  {path: '**', component: AdvertisementListComponent},
+  {path: '**', component: OfferListComponent},
 ];
 
 @NgModule({
