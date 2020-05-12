@@ -17,6 +17,12 @@ public class Contact implements Serializable {
 
         public Contact() {}
 
+        public Contact(Contact contact) {
+                this.name = contact.getName();
+                this.email = contact.getName();
+                this.phoneNumber =contact.getPhoneNumber();
+        }
+
         @Id
         @SequenceGenerator (name = "CONTACT_ID_GENERATOR", sequenceName = "CONTACT_SEQ", allocationSize = 1)
         @GeneratedValue (strategy = GenerationType.SEQUENCE, generator = "CONTACT_ID_GENERATOR")

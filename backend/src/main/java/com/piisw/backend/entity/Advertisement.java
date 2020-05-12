@@ -1,6 +1,7 @@
 package com.piisw.backend.entity;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,10 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Entity
@@ -31,17 +30,17 @@ public class Advertisement implements Serializable {
 
         @NotNull
         @Column
-        private String description;
+        private String content;
 
         @NotNull
         @Column
         private char isActive;
 
-        @ManyToOne(fetch = FetchType.EAGER)
+        @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
         @JoinColumn(name = "CONTACT_ID", nullable = false)
         private Contact contact;
 
-        @ManyToOne(fetch = FetchType.EAGER)
+        @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
         @JoinColumn(name = "LOCALIZATION_ID", nullable = false)
         private Localization localization;
 
@@ -50,10 +49,10 @@ public class Advertisement implements Serializable {
 
         public Advertisement(Advertisement advertisement) {
                 this.title = advertisement.getTitle();
-                this.description = advertisement.getDescription();
+                this.content = advertisement.getContent();
                 this.isActive = 'Y';
-                this.contact = advertisement.getContact();
-                this.localization = advertisement.getLocalization();
+                this.contact =  new Contact(advertisement.getContact());
+                this.localization = new Localization(advertisement.getLocalization());
         }
 
 

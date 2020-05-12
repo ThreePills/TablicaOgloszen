@@ -17,6 +17,13 @@ public class Localization implements Serializable {
 
         public Localization() {}
 
+        public Localization(Localization localization) {
+                this.country = localization.getCountry();
+                this.region = localization.getRegion();
+                this.zipCode = localization.getZipCode();
+                this.localizationName = localization.getLocalizationName();
+        }
+
         @Id
         @SequenceGenerator (name = "LOCALIZATIION_ID_GENERATOR", sequenceName = "LOCALIZATION_SEQ", allocationSize = 1)
         @GeneratedValue (strategy = GenerationType.SEQUENCE, generator = "LOCALIZATION_ID_GENERATOR")
