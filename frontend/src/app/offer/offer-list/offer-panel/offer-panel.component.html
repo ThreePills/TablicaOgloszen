@@ -1,0 +1,12 @@
+<div class="offer-panel">
+  <div class="offer-header">
+    <div class="offer-left-header">
+      <p class="offer-title">{{ offer.title }}</p>
+      <p class="offer-localization">{{ offer.localization.country }}, {{ offer.localization.region }}, {{ offer.localization.localizationName }}</p>
+    </div>
+    <p class="offer-email"><span><i class="email-icon" nzTooltipTitle="{{offer.contact.email}}" nzTooltipPlacement="bottom" nz-tooltip nz-icon nzType="mail" nzTheme="outline"></i></span></p>
+    <p class="offer-phoneNumber"><span><i class="phone-icon" nzTooltipTitle="{{offer.contact.phoneNumber}}" nzTooltipPlacement="bottom" nz-tooltip nz-icon nzType="phone" nzTheme="outline"></i></span></p>
+  </div>
+  <p class="offer-content">{{ offer.content }}</p>
+  <p class="offer-author">{{ offer.contact.name }}</p>
+</div>

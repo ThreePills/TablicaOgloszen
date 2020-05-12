@@ -1,12 +1,15 @@
 :root{
   --background-color: #EFEBE9;
   --background-color-header: #689F38;
-  --background-advertisement: #ffffff;
+  --background-offer: #ffffff;
   --white-color: #ffffff;
-  --warning-color: #FF0033;
+  --warning-color: #FF6699;
+  --email-color: #6699FF;
 
   --side-margin: 0.9em;
 
   --side-padding: 0.5em;
   --font-size-heading: 1.7em;
+  --font-size-signature: 1.2em;
+  --font-size-localization: 0.8em;
 }

@@ -1,30 +1,47 @@
 @import "../../../../variables.css";
 
-.advertisement-panel{
+.offer-panel{
   display: flex;
   flex-direction: column;
   border: 0.2em solid var(--background-color-header);
   border-radius: 1em;
-  background-color: var(--background-advertisement);
+  background-color: var(--background-offer);
   margin: 1em;
 }
 
-.advertisement-header{
+.offer-header{
   display: flex;
   justify-content: flex-end;
   align-items: baseline;
   margin: 0 var(--side-margin);
 }
 
-.advertisement-title{
+.offer-left-header{
   width: 100%;
   align-self: center;
   margin-top: 0.5em;
+}
+
+.offer-title{
+  margin: 0;
   font-size: var(--font-size-heading);
   font-style: italic;
 }
 
-.advertisement-telephone{
+.offer-localization{
+  margin: 0;
+  font-style: italic;
+  font-size: var(--font-size-localization);
+}
+
+
+.offer-phoneNumber{
+  align-self: center;
+  justify-self: center;
+  margin-left: var(--side-margin);
+}
+
+.offer-email{
   align-self: center;
   justify-self: center;
 }
@@ -35,9 +52,22 @@
   font-size: var(--font-size-heading);
 }
 
-.advertisement-content{
+.email-icon{
+  font-weight: bold;
+  color: var(--email-color);
+  font-size: var(--font-size-heading);
+}
+
+.offer-content{
   height: 100%;
   margin: var(--side-margin);
   text-align: justify;
   word-wrap: break-word;
+}
+
+.offer-author{
+  align-self: flex-end;
+  font-style: italic;
+  font-size: var(--font-size-signature);
+  margin-right: var(--side-margin);
 }
