@@ -13,6 +13,16 @@
   margin-left: var(--side-margin);
 }
 
+.button-success{
+  color: #fff;
+  background-color: var(--background-color-header);
+  border-color: var(--background-color-header);
+}
+
+.button-success:hover{
+  background-color: var(--background-color-button-hover);
+}
+
 .label-column:active{
   background: var(--background-color-header) !important;
   border-color: var(--background-color-header) !important;
