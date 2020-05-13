@@ -1,7 +1,6 @@
 package com.piisw.backend.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.piisw.backend.entity.Advertisement;
 import com.piisw.backend.repository.AdvertisementRepository;
@@ -13,32 +12,35 @@ import org.springframework.stereotype.Service;
 @Service
 public class AdvertisementService {
 
-        @Autowired
         private AdvertisementRepository advertisementRepository;
-
-        @Autowired
         private ContactRepository contactRepository;
-
-        @Autowired
         private LocalizationRepository localizationRepository;
 
-        public AdvertisementService(@Autowired AdvertisementRepository advertisementRepository) {
+
+        public AdvertisementService(@Autowired AdvertisementRepository advertisementRepository,
+                                    @Autowired ContactRepository contactRepository,
+                                    @Autowired LocalizationRepository localizationRepository) {
                 this.advertisementRepository = advertisementRepository;
+                this.localizationRepository = localizationRepository;
+                this.contactRepository = contactRepository;
         }
 
 
-        public List<Advertisement> findAllAdvertisement(){
+        public List<Advertisement> findAllAdvertisement() {
                 return advertisementRepository.findAll();
         }
-        public List<Advertisement> findAllActiveAdvertisements(){
+
+        public List<Advertisement> findAllActiveAdvertisements() {
                 return advertisementRepository.findAllByIsActive('Y');
         }
-        public Advertisement insertAdvertisement(Advertisement advertisement){
+
+        public Advertisement insertAdvertisement(Advertisement advertisement) {
                 contactRepository.save(advertisement.getContact());
                 localizationRepository.save(advertisement.getLocalization());
                 return advertisementRepository.save(new Advertisement(advertisement));
         }
-        public void removeAdvertisement(Integer advertisementId){
+
+        public void removeAdvertisement(Integer advertisementId) {
                 advertisementRepository.removeAdvertisement(advertisementId);
 
         }

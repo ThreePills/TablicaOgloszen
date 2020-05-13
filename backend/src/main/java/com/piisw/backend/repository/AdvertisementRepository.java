@@ -14,7 +14,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AdvertisementRepository extends JpaRepository<Advertisement,Integer> {
+
         List<Advertisement> findAll();
+
         Optional<Advertisement> findById(Integer id);
 
         List<Advertisement> findAllByIsActive(char isActive);

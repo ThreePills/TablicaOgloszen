@@ -4,7 +4,9 @@ import java.util.Optional;
 
 import com.piisw.backend.entity.Localization;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface LocalizationRepository extends JpaRepository<Localization,Integer> {
+@Repository
+public interface LocalizationRepository extends JpaRepository<Localization, Integer> {
         Optional<Localization> findById(Integer id);
 }
