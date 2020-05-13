@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core'
 import {NewOffer} from "../model/NewOffer";
 import {NewContact} from "../model/NewContact";
 import {NewLocalization} from "../model/NewLocalization";
+import {Offer} from "../model/Offer";
 
 @Component({
   selector: 'app-offer-list',
@@ -29,11 +30,10 @@ export class OfferListComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('Offers');
-    this.offers.push(this.offer1);
-    this.offers.push(this.offer2);
-    this.offers.push(this.offer3);
-    this.offers.push(this.offer4);
-    console.log(this.offers);
+    // this.offers.push(this.offer1);
+    // this.offers.push(this.offer2);
+    // this.offers.push(this.offer3);
+    // this.offers.push(this.offer4);
   }
 
   getColumnsNumber(columns: String) {

@@ -1,4 +1,5 @@
 .offer-section {
+  height: 100%;
   margin: 2em;
   display: flex;
   flex-direction: column;
@@ -35,5 +36,13 @@
 .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled)::before {
   background: var(--background-color-header) !important;
   border-color: var(--background-color-header) !important;
+}
+
+.no-offers{
+  margin-top: 5%;
+}
+
+.no-offers span{
+  font-style: italic;
 }
 

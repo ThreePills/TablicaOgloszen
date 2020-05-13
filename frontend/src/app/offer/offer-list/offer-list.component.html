@@ -1,14 +1,22 @@
 <section class="offer-section">
-  <div class="columns-button">Widok:
+  <div class="columns-button" *ngIf="offers.length > 0">Widok:
     <nz-radio-group class="button-group" [(ngModel)]="columns" nzButtonStyle="solid">
       <label class="label-column" nz-radio-button nzValue="1">1</label>
       <label class="label-column" nz-radio-button nzValue="3">3</label>
     </nz-radio-group>
   </div>
-  <div nz-row [nzGutter]="[hGutter, vGutter]">
+  <div nz-row [nzGutter]="[hGutter, vGutter]"  *ngIf="offers.length > 0">
     <app-offer-panel nz-col class="offer-row" [nzSpan]="24 / getColumnsNumber(columns)" *ngFor="let offer of offers"
                      [offer]="offer">
     </app-offer-panel>
   </div>
-  <p *ngIf="!offers || offers.length === 0">No offers found</p>
+  <nz-empty
+    class="no-offers"
+    *ngIf="!offers || offers.length === 0"
+    [nzNotFoundContent]="content"
+  >
+    <ng-template #content>
+      <span> No offers found</span>
+    </ng-template>
+  </nz-empty>
 </section>
