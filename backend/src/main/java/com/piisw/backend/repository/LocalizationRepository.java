@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface LocalizationRepository extends JpaRepository<Localization, Integer> {
-        Optional<Localization> findById(Integer id);
+public interface LocalizationRepository extends JpaRepository<Localization, Long> {
+        Optional<Localization> findById(Long id);
 }

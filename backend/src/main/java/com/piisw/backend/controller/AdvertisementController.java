@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.piisw.backend.entity.Advertisement;
 import com.piisw.backend.service.AdvertisementService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,32 +16,29 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@AllArgsConstructor
 @RequestMapping (value = "/advertisement")
 public class AdvertisementController {
 
-        private AdvertisementService advertisementService;
+        private final AdvertisementService advertisementService;
 
-        public AdvertisementController(@Autowired AdvertisementService advertisementService) {
-                this.advertisementService = advertisementService;
-        }
-
-        @PostMapping (value = "/addAdvertisement")
+        @PostMapping
         @ResponseBody
         public ResponseEntity<Advertisement> addAdvertisement(@RequestBody Advertisement advertisement) {
                 return ResponseEntity.ok(advertisementService.insertAdvertisement(advertisement));
         }
 
-        @GetMapping (value = "/getAllAdvertisements")
+        @GetMapping (value = "/all")
         @ResponseBody
         public ResponseEntity<List<Advertisement>> getAdvertisements() {
                 return ResponseEntity.ok(advertisementService.findAllAdvertisement());
         }
-        @GetMapping(value = "/getAdvertisements")
+        @GetMapping(value = "/allActive")
         @ResponseBody
         public ResponseEntity<List<Advertisement>> getActiveAdvertisements(){
                 return ResponseEntity.ok(advertisementService.findAllActiveAdvertisements());
         }
-        @DeleteMapping ("/deleteAdvertisement/{id}")
+        @DeleteMapping ("/{id}")
         @ResponseBody
         public void deleteAdvertisement(@PathVariable Integer id){
                advertisementService.removeAdvertisement(id);
