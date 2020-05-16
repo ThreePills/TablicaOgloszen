@@ -14,14 +14,8 @@
   margin-left: var(--side-margin);
 }
 
-.label-column:active{
-  background: var(--background-color-header) !important;
-  border-color: var(--background-color-header) !important;
-}
-
 .label-column:hover{
-  color: var(--background-color-header) !important;
-  border-color: var(--background-color-header) !important;
+  border-color: var(--background-color-header) ;
 }
 
 .ant-radio-group-solid .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled){
