@@ -6,6 +6,15 @@
     </div>
     <p class="offer-email"><span><i class="email-icon" nzTooltipTitle="{{offer.contact.email}}" nzTooltipPlacement="bottom" nz-tooltip nz-icon nzType="mail" nzTheme="outline"></i></span></p>
     <p class="offer-phoneNumber"><span><i class="phone-icon" nzTooltipTitle="{{offer.contact.phoneNumber}}" nzTooltipPlacement="bottom" nz-tooltip nz-icon nzType="phone" nzTheme="outline"></i></span></p>
+    <p class="offer-menu"><button class="button-menu" nz-button nz-dropdown nzTrigger="click" [nzDropdownMenu]="offerMenu"><i nz-icon nzType="menu" nzTheme="outline"></i></button>
+
+    </p>
+    <nz-dropdown-menu class="dropdown-menu" #offerMenu="nzDropdownMenu">
+      <ul nz-menu>
+        <li nz-menu-item>Edytuj ogłoszenie</li>
+        <li nz-menu-item>Usuń ogłoszenie</li>
+      </ul>
+    </nz-dropdown-menu>
   </div>
   <p class="offer-content">{{ offer.content }}</p>
   <p class="offer-author">{{ offer.contact.name }}</p>

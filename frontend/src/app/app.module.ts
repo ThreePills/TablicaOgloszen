@@ -11,7 +11,15 @@ import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
-import {NzButtonModule, NzEmptyModule, NzGridModule, NzIconModule, NzRadioModule, NzToolTipModule} from "ng-zorro-antd";
+import {
+  NzButtonModule,
+  NzDropDownModule,
+  NzEmptyModule,
+  NzGridModule,
+  NzIconModule,
+  NzRadioModule,
+  NzToolTipModule
+} from "ng-zorro-antd";
 
 registerLocaleData(en);
 
@@ -21,18 +29,19 @@ registerLocaleData(en);
     OfferListComponent,
     OfferPanelComponent
   ],
-    imports: [
-        BrowserModule,
-        FormsModule,
-        HttpClientModule,
-        BrowserAnimationsModule,
-        NzGridModule,
-        NzIconModule,
-        NzToolTipModule,
-        NzRadioModule,
-        NzButtonModule,
-        NzEmptyModule
-    ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    NzGridModule,
+    NzIconModule,
+    NzToolTipModule,
+    NzRadioModule,
+    NzButtonModule,
+    NzEmptyModule,
+    NzDropDownModule
+  ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]
 })

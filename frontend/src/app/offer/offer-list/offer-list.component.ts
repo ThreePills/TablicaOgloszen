@@ -30,10 +30,10 @@ export class OfferListComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('Offers');
-    // this.offers.push(this.offer1);
-    // this.offers.push(this.offer2);
-    // this.offers.push(this.offer3);
-    // this.offers.push(this.offer4);
+    this.offers.push(this.offer1);
+    this.offers.push(this.offer2);
+    this.offers.push(this.offer3);
+    this.offers.push(this.offer4);
   }
 
   getColumnsNumber(columns: String) {
