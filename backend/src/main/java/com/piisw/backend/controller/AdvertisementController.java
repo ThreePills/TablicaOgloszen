@@ -6,14 +6,7 @@ import com.piisw.backend.entity.Advertisement;
 import com.piisw.backend.service.AdvertisementService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
@@ -33,11 +26,15 @@ public class AdvertisementController {
         public ResponseEntity<List<Advertisement>> getAdvertisements() {
                 return ResponseEntity.ok(advertisementService.findAllAdvertisement());
         }
+
+        @CrossOrigin(origins = "http://localhost:4200")
         @GetMapping(value = "/allActive")
         @ResponseBody
         public ResponseEntity<List<Advertisement>> getActiveAdvertisements(){
                 return ResponseEntity.ok(advertisementService.findAllActiveAdvertisements());
         }
+
+        @CrossOrigin(origins = "http://localhost:4200")
         @DeleteMapping ("/{id}")
         @ResponseBody
         public void deleteAdvertisement(@PathVariable Integer id){
