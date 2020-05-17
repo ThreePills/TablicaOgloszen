@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
@@ -16,10 +17,11 @@ import {
   NzDropDownModule,
   NzEmptyModule,
   NzGridModule,
-  NzIconModule,
+  NzIconModule, NzModalModule,
   NzRadioModule,
   NzToolTipModule
 } from "ng-zorro-antd";
+import {AppRoutingModule} from "./app-routing.module";
 
 registerLocaleData(en);
 
@@ -27,10 +29,12 @@ registerLocaleData(en);
   declarations: [
     AppComponent,
     OfferListComponent,
-    OfferPanelComponent
+    OfferPanelComponent,
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
+    CommonModule,
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
@@ -40,9 +44,13 @@ registerLocaleData(en);
     NzRadioModule,
     NzButtonModule,
     NzEmptyModule,
-    NzDropDownModule
+    NzDropDownModule,
+    NzModalModule
   ],
-  providers: [{ provide: NZ_I18N, useValue: en_US }],
+  providers: [
+    { provide: NZ_I18N, useValue: en_US },
+
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

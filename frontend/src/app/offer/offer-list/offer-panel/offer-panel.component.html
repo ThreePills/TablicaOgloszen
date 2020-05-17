@@ -12,7 +12,7 @@
     <nz-dropdown-menu class="dropdown-menu" #offerMenu="nzDropdownMenu">
       <ul nz-menu>
         <li nz-menu-item>Edytuj ogłoszenie</li>
-        <li nz-menu-item>Usuń ogłoszenie</li>
+        <li nz-menu-item (click)="confirmDeleteOffer(offer.title, offer.id)">Usuń ogłoszenie</li>
       </ul>
     </nz-dropdown-menu>
   </div>

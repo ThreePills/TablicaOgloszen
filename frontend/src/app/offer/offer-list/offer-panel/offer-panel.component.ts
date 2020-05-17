@@ -10,6 +10,8 @@ export class OfferPanelComponent implements OnInit {
 
   @Input()
   offer: Offer
+  @Input()
+  confirmDeleteOffer
 
   constructor() { }
 

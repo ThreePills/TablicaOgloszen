@@ -1,13 +1,13 @@
 <section class="offer-section">
-  <div class="columns-button" *ngIf="offers.length > 0">Widok:
+  <div class="columns-button" *ngIf="offers && offers.length > 0">Widok:
     <nz-radio-group class="button-group" [(ngModel)]="columns" nzButtonStyle="solid">
       <label class="label-column" nz-radio-button nzValue="1">1</label>
       <label class="label-column" nz-radio-button nzValue="3">3</label>
     </nz-radio-group>
   </div>
-  <div nz-row [nzGutter]="[hGutter, vGutter]"  *ngIf="offers.length > 0">
+  <div nz-row [nzGutter]="[hGutter, vGutter]"  *ngIf="offers && offers.length > 0">
     <app-offer-panel nz-col class="offer-row" [nzSpan]="24 / getColumnsNumber(columns)" *ngFor="let offer of offers"
-                     [offer]="offer">
+                     [offer]="offer" [confirmDeleteOffer] = "confirmDeleteOffer">
     </app-offer-panel>
   </div>
   <nz-empty
