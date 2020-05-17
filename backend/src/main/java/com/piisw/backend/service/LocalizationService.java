@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class LocalizationService {
         final LocalizationRepository localizationRepository;
 
-        Localization updateLocalizationInOffer(Localization offerLocalization) {
+         Localization updateLocalizationInOffer(Localization offerLocalization) {
                 Optional<Localization> localizationOptional = localizationRepository.findAll().stream()
                                                                                     .filter(localization -> localization
                                                                                             .equals(offerLocalization))
