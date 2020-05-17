@@ -25,7 +25,7 @@ public class Advertisement implements Serializable {
         @Id
         @SequenceGenerator (name = "ADVERTISEMENT_ID_GENERATOR", sequenceName = "ADVERTISEMENT_SEQ", allocationSize = 1)
         @GeneratedValue (strategy = GenerationType.SEQUENCE, generator = "ADVERTISEMENT_ID_GENERATOR")
-        private Integer id;
+        private Long id;
 
         @NotNull
         private String title;
@@ -34,7 +34,7 @@ public class Advertisement implements Serializable {
         private String content;
 
         @NotNull
-        private boolean isActive;
+        private boolean isActive = true;
 
         @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
         @JoinColumn(name = "CONTACT_ID", nullable = false)
@@ -43,14 +43,5 @@ public class Advertisement implements Serializable {
         @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
         @JoinColumn(name = "LOCALIZATION_ID", nullable = false)
         private Localization localization;
-
-        public Advertisement(Advertisement advertisement) {
-                this.title = advertisement.getTitle();
-                this.content = advertisement.getContent();
-                this.isActive = true;
-                this.contact =  advertisement.getContact();
-                this.localization = advertisement.getLocalization();
-        }
-
 
 }
