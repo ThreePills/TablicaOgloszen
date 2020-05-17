@@ -13,13 +13,12 @@ public class ContactService {
 
         private final ContactRepository contactRepository;
 
-        Contact upadateContactInAdvertisement(Contact advertisementContact) {
+        Contact upadateContactInOffer(Contact offerContact) {
                 Optional<Contact> contactOptional = contactRepository.findAll().stream()
-                                                                     .filter(contact1 -> contact1
-                                                                             .equals(advertisementContact))
+                                                                     .filter(contact -> contact
+                                                                             .equals(offerContact))
                                                                      .findFirst();
 
-                return contactOptional.orElseGet(() -> contactRepository.save(advertisementContact));
-
+                return contactOptional.orElseGet(() -> contactRepository.save(offerContact));
         }
 }

@@ -24,7 +24,7 @@ public class Localization implements Serializable {
         @SequenceGenerator (name = "LOCALIZATIION_ID_GENERATOR", sequenceName = "LOCALIZATION_SEQ", allocationSize = 1)
         @GeneratedValue (strategy = GenerationType.SEQUENCE, generator = "LOCALIZATION_ID_GENERATOR")
         @EqualsAndHashCode.Exclude
-        private Integer id;
+        private Long id;
 
         @NotNull
         private String country;

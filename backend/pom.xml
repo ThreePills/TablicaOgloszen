@@ -11,7 +11,7 @@
 	<artifactId>TablicaOgloszenDrobnych-backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>backend</name>
-	<description>Advertisements board</description>
+	<description>Offers board</description>
 
 	<properties>
 		<java.version>1.8</java.version>

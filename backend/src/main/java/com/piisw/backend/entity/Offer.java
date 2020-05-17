@@ -20,11 +20,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @EqualsAndHashCode
-public class Advertisement implements Serializable {
+public class Offer implements Serializable {
 
         @Id
-        @SequenceGenerator (name = "ADVERTISEMENT_ID_GENERATOR", sequenceName = "ADVERTISEMENT_SEQ", allocationSize = 1)
-        @GeneratedValue (strategy = GenerationType.SEQUENCE, generator = "ADVERTISEMENT_ID_GENERATOR")
+        @SequenceGenerator (name = "OFFER_ID_GENERATOR", sequenceName = "OFFER_SEQ", allocationSize = 1)
+        @GeneratedValue (strategy = GenerationType.SEQUENCE, generator = "OFFER_ID_GENERATOR")
         private Long id;
 
         @NotNull
@@ -36,12 +36,12 @@ public class Advertisement implements Serializable {
         @NotNull
         private boolean isActive = true;
 
-        @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-        @JoinColumn(name = "CONTACT_ID", nullable = false)
+        @ManyToOne (fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+        @JoinColumn (name = "CONTACT_ID", nullable = false)
         private Contact contact;
 
-        @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-        @JoinColumn(name = "LOCALIZATION_ID", nullable = false)
+        @ManyToOne (fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+        @JoinColumn (name = "LOCALIZATION_ID", nullable = false)
         private Localization localization;
 
 }
