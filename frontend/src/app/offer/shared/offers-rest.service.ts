@@ -8,7 +8,7 @@ import {Offer} from "../model/Offer";
 })
 export class OffersRestService {
 
-  private OFFERS_ENDPOINT = 'http://localhost:8080/advertisement';
+  private OFFERS_ENDPOINT = 'http://localhost:8080/offer';
 
   constructor(private readonly http: HttpClient) {
   }

@@ -6,14 +6,7 @@ import com.piisw.backend.entity.Offer;
 import com.piisw.backend.service.OfferService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
@@ -34,12 +27,14 @@ public class OfferController {
                 return ResponseEntity.ok(offerService.findAllOffers());
         }
 
+        @CrossOrigin("http://localhost:4200" )
         @GetMapping (value = "/allActive")
         @ResponseBody
         public ResponseEntity<List<Offer>> getActiveOffers() {
                 return ResponseEntity.ok(offerService.findAllActiveOffers());
         }
 
+        @CrossOrigin("http://localhost:4200" )
         @DeleteMapping ("/{id}")
         @ResponseBody
         public void deleteOffer(@PathVariable Long id) {

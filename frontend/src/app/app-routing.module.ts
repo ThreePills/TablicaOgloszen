@@ -16,8 +16,7 @@ const routes: Routes = [
   {
     path: 'offers/create',
     component: OfferFormComponent,
-  },
-  {path: '**', component: OfferListComponent},
+  }
 ];
 
 @NgModule({
