@@ -1,0 +1,134 @@
+<section class="offer-section">
+  <h1>Dodaj nowe ogłoszenie</h1>
+  <form [formGroup]="offerForm" (ngSubmit)="onSubmit(offerForm.value)">
+    <div class="form-section">
+      <div class="form-section-title">Informacje na temat ogłoszenia</div>
+      <div class="form-group">
+        <label for="title">Tytuł</label>
+        <input class="form-control" id="title" type="text" formControlName="title" [required]="offerForm">
+
+        <div *ngIf="title.invalid && (title.dirty || title.touched)"
+             class="alert alert-danger">
+          <div *ngIf="title.errors.required">
+            Tytuł jest wymagany.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="content">Treść</label>
+        <textarea class="form-control" id="content" type="text" formControlName="content"
+                  [required]="offerForm"></textarea>
+
+        <div *ngIf="content.invalid && (content.dirty || content.touched)"
+             class="alert alert-danger">
+          <div *ngIf="content.errors.required">
+            Treść jest wymagana.
+          </div>
+          <div *ngIf="content.errors.minlength">
+            Treść musi się składać z minimum <b>10</b> znaków.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">Dane osobowe</div>
+
+      <div class="form-group" formGroupName="contact">
+        <label for="name">Imię</label>
+        <input class="form-control" id="name" type="text" formControlName="name" [required]="offerForm">
+
+        <div *ngIf="name.invalid && (name.dirty || name.touched)"
+             class="alert alert-danger">
+          <div *ngIf="name.errors.required">
+            Imię jest wymagane.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group" formGroupName="contact">
+        <label for="email">Email</label>
+        <input class="form-control" id="email" type="text" formControlName="email" [required]="offerForm">
+
+        <div *ngIf="email.invalid && (email.dirty || email.touched)"
+             class="alert alert-danger">
+          <div *ngIf="email.errors.required">
+            Email jest wymagany.
+          </div>
+          <div *ngIf="email.errors.email">
+            Adres email jest niepoprawny.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group" formGroupName="contact">
+        <label for="phoneNumber">Numer telefonu</label>
+        <input class="form-control" id="phoneNumber" type="tel" formControlName="phoneNumber" [required]="offerForm">
+
+        <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)"
+             class="alert alert-danger">
+          <div *ngIf="phoneNumber.errors.required">
+            Numer telefonu jest wymagany.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">Dane lokalizacyjne</div>
+
+      <div class="form-group" formGroupName="localization">
+        <label for="country">Kraj</label>
+        <input class="form-control" id="country" type="text" formControlName="country" [required]="offerForm">
+
+        <div *ngIf="country.invalid && (country.dirty || country.touched)"
+             class="alert alert-danger">
+          <div *ngIf="country.errors.required">
+            Kraj jest wymagany.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group" formGroupName="localization">
+        <label for="region">Województwo</label>
+        <input class="form-control" id="region" type="text" formControlName="region" [required]="offerForm">
+
+        <div *ngIf="region.invalid && (region.dirty || region.touched)"
+             class="alert alert-danger">
+          <div *ngIf="region.errors.required">
+            Województwo jest wymagane.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group" formGroupName="localization">
+        <label for="zipCode">Kod pocztowy</label>
+        <input class="form-control" id="zipCode" type="text" formControlName="zipCode" [required]="offerForm">
+
+        <div *ngIf="zipCode.invalid && (zipCode.dirty || zipCode.touched)"
+             class="alert alert-danger">
+          <div *ngIf="zipCode.errors.required">
+            Kod pocztowy jest wymagany.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group" formGroupName="localization">
+        <label for="localizationName">Miejscowość</label>
+        <input class="form-control" id="localizationName" type="text" formControlName="localizationName"
+               [required]="offerForm">
+
+        <div *ngIf="localizationName.invalid && (localizationName.dirty || localizationName.touched)"
+             class="alert alert-danger">
+          <div *ngIf="localizationName.errors.required">
+            Miejscowość jest wymagana.
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <button class="button btn btn-success" type="submit" [disabled]="!offerForm.valid">Zapisz</button>
+  </form>
+</section>
