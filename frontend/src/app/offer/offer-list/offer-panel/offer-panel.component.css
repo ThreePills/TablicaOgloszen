@@ -58,6 +58,27 @@
   font-size: var(--font-size-heading);
 }
 
+.offer-menu{
+  align-self: center;
+  justify-self: center;
+  margin-left: 0.4em;
+}
+
+.button-menu{
+  border: none;
+}
+
+.ant-dropdown-menu-item:hover,
+.ant-dropdown-menu-submenu-title:hover {
+  background-color: var(--background-color-header);
+  color: var(--white-color);
+}
+
+.button-menu:hover,
+.button-menu:focus{
+  color: var(--background-color-header);
+}
+
 .offer-content{
   height: 100%;
   margin: var(--side-margin);
