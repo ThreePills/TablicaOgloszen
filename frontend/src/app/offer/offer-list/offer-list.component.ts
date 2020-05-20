@@ -18,6 +18,7 @@ export class OfferListComponent implements OnInit {
   hGutter = 16;
   vGutter = 16;
   columns = "3";
+  searchTerm: string;
 
   constructor(private readonly route: ActivatedRoute, private offersRestService: OffersRestService, private modal: NzModalService) {}
 

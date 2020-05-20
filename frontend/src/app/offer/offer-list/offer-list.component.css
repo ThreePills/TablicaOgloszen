@@ -5,16 +5,48 @@
   flex-direction: column;
 }
 
-.buttons{
+.options{
   display: flex;
   justify-content: space-between;
 }
 
+.options-left{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.form-inline{
+  width: 300px;
+}
+
+.form-control{
+  border: none;
+  border-bottom: 1px solid var(--background-color-header);
+  background-color: var(--background-color);
+}
+
+.active-cyan-2 input.form-control[type=text]:focus:not([readonly]) {
+  border-bottom: 1px solid var(--background-color-header);
+  box-shadow: 0 1px 0 0 var(--background-color-header);
+}
+
+.active-cyan input[type=text] {
+  background-color: var(--background-color);
+  border-bottom: 1px solid var(--background-color-header);
+  box-shadow: 0 1px 0 0 var(--background-color-header);
+}
+
+.search-icon{
+  margin-top: var(--side-margin);
+}
+
 .button-group{
-  margin-left: var(--side-margin);
+  align-self: flex-end;
 }
 
 .button-success{
+  align-self: center;
   color: #fff;
   background-color: var(--background-color-header);
   border-color: var(--background-color-header);

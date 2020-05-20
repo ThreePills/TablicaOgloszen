@@ -15,6 +15,7 @@ import en from '@angular/common/locales/en';
 import {NzButtonModule, NzEmptyModule, NzModalModule, NzDropDownModule, NzGridModule, NzIconModule, NzRadioModule, NzToolTipModule} from "ng-zorro-antd";
 import { OfferFormComponent } from './offer/offer-form/offer-form.component';
 import {AppRoutingModule} from "./app-routing.module";
+import {FilterlistPipe} from "./offer/offer-list/filterListPipe";
 
 registerLocaleData(en);
 
@@ -23,7 +24,8 @@ registerLocaleData(en);
     AppComponent,
     OfferListComponent,
     OfferPanelComponent,
-    OfferFormComponent
+    OfferFormComponent,
+    FilterlistPipe
   ],
   imports: [
     BrowserModule,
