@@ -35,7 +35,7 @@ export class OfferListComponent implements OnInit {
   confirmDeleteOffer = (offerTitle, offerId) => {
     this.modal.confirm({
       nzTitle: `Potwierdzenie`,
-      nzContent: `<b style="color: red;">Czy na pewno chcesz usunąć offertę: <span>"${offerTitle}"</span>?</b>`,
+      nzContent: `<b style="color: red;">Czy na pewno chcesz usunąć ofertę: <span>"${offerTitle}"</span>?</b>`,
       nzOkText: 'Usuń',
       nzOkType: 'danger',
       nzOnOk: () => this.deleteOffer(offerId),
