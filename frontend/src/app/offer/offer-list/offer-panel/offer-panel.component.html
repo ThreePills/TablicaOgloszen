@@ -4,10 +4,9 @@
       <p class="offer-title">{{ offer.title }}</p>
       <p class="offer-localization">{{ offer.localization.country }}, {{ offer.localization.region }}, {{ offer.localization.localizationName }}</p>
     </div>
-    <p class="offer-email"><span><i class="email-icon" nzTooltipTitle="{{offer.contact.email}}" nzTooltipPlacement="bottom" nz-tooltip nz-icon nzType="mail" nzTheme="outline"></i></span></p>
-    <p class="offer-phoneNumber"><span><i class="phone-icon" nzTooltipTitle="{{offer.contact.phoneNumber}}" nzTooltipPlacement="bottom" nz-tooltip nz-icon nzType="phone" nzTheme="outline"></i></span></p>
+    <p class="offer-email"><span><a href="mailto:{{offer.contact.email}}?subject={{offer.title}}"target="_blank"><i class="email-icon" nzTooltipTitle="{{offer.contact.email}}" nzTooltipPlacement="bottom" nz-tooltip nz-icon nzType="mail" nzTheme="outline"></i></a></span></p>
+    <p class="offer-phoneNumber"><span><a href="tel:{{offer.contact.phoneNumber}}"><i class="phone-icon" nzTooltipTitle="{{offer.contact.phoneNumber}}" nzTooltipPlacement="bottom" nz-tooltip nz-icon nzType="phone" nzTheme="outline"></i></a></span></p>
     <p class="offer-menu"><button class="button-menu" nz-button nz-dropdown nzTrigger="click" [nzDropdownMenu]="offerMenu"><i nz-icon nzType="menu" nzTheme="outline"></i></button>
-
     </p>
     <nz-dropdown-menu class="dropdown-menu" #offerMenu="nzDropdownMenu">
       <ul nz-menu>
