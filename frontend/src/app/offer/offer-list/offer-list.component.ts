@@ -41,12 +41,9 @@ export class OfferListComponent implements OnInit {
       nzTitle: `Edytuj ${offer.title}`,
       nzContent: OfferEditComponent,
       nzComponentParams: {
-        offer: offer
-      },
-      nzOkText: 'Ok',
-      // nzOnOk: () => this.deleteOffer(offerId),
-      nzCancelText: 'Anuluj',
-      nzOnCancel: () => console.log('Editing offer canceled')
+        offer: offer,
+        cities: this.cities
+      }
     });
   }
 

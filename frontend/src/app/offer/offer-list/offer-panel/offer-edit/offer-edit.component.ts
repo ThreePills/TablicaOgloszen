@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Offer} from "../../../model/Offer";
 import {FormControl, FormGroup} from "@angular/forms";
+import {Cities} from "../../../shared/cities.enum";
 
 @Component({
   selector: 'app-offer-edit',
@@ -11,13 +12,20 @@ export class OfferEditComponent implements OnInit {
 
   validateForm: FormGroup;
   offer: Offer;
-  myGroup: any;
+  cities: Cities[]
 
   constructor() {}
 
   ngOnInit(): void {
-    this.myGroup = new FormGroup({
-      firstName: new FormControl()
+    this.validateForm = new FormGroup({
+      title: new FormControl(),
+      name: new FormControl(),
+      phone: new FormControl(),
+      email: new FormControl(),
+      country: new FormControl(),
+      region: new FormControl(),
+      city: new FormControl(),
+      zipCode: new FormControl()
     });
   }
 
