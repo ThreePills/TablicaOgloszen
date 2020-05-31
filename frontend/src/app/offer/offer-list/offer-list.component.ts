@@ -6,6 +6,7 @@ import {Offer} from "../model/Offer";
 import {ActivatedRoute} from "@angular/router";
 import {OffersRestService} from "../shared/offers-rest.service";
 import {NzModalService} from "ng-zorro-antd/modal";
+import {Cities} from "../shared/cities.enum";
 
 @Component({
   selector: 'app-offer-list',
@@ -19,6 +20,8 @@ export class OfferListComponent implements OnInit {
   vGutter = 16;
   columns = "3";
   searchTerm: string;
+  searchCity: string;
+  cities = Object.values(Cities);
 
   constructor(private readonly route: ActivatedRoute, private offersRestService: OffersRestService, private modal: NzModalService) {}
 
