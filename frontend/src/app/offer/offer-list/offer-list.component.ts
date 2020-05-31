@@ -6,6 +6,7 @@ import {Offer} from "../model/Offer";
 import {ActivatedRoute} from "@angular/router";
 import {OffersRestService} from "../shared/offers-rest.service";
 import {NzModalService} from "ng-zorro-antd/modal";
+import {Cities} from "../shared/cities.enum";
 
 @Component({
   selector: 'app-offer-list',
@@ -18,6 +19,9 @@ export class OfferListComponent implements OnInit {
   hGutter = 16;
   vGutter = 16;
   columns = "3";
+  searchTerm: string;
+  searchCity: string;
+  cities = Object.values(Cities);
 
   constructor(private readonly route: ActivatedRoute, private offersRestService: OffersRestService, private modal: NzModalService) {}
 
@@ -34,7 +38,7 @@ export class OfferListComponent implements OnInit {
   confirmDeleteOffer = (offerTitle, offerId) => {
     this.modal.confirm({
       nzTitle: `Potwierdzenie`,
-      nzContent: `<b style="color: red;">Czy na pewno chcesz usunąć offertę: <span>"${offerTitle}"</span>?</b>`,
+      nzContent: `<b style="color: red;">Czy na pewno chcesz usunąć ofertę: <span>"${offerTitle}"</span>?</b>`,
       nzOkText: 'Usuń',
       nzOkType: 'danger',
       nzOnOk: () => this.deleteOffer(offerId),

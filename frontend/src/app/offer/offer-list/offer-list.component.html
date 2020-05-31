@@ -1,25 +1,39 @@
 <section class="offer-section">
-  <div class="buttons">
-    <a routerLink="offers/create" class="btn button-success button-group">Dodaj nowe ogłoszenie</a>
+  <div class="offer-list">
+    <div nz-row [nzGutter]="[hGutter, vGutter]"  *ngIf="offers && offers.length > 0">
+      <app-offer-panel nz-col class="offer-row" [nzSpan]="24 / getColumnsNumber(columns)" *ngFor="let offer of offers | FilterlistTitle:searchTerm | FilterlistCity: searchCity"
+                       [offer]="offer" [confirmDeleteOffer] = "confirmDeleteOffer">
+      </app-offer-panel>
+    </div>
+    <nz-empty
+      class="no-offers"
+      *ngIf="!offers || offers.length === 0"
+      [nzNotFoundContent]="content"
+    >
+      <ng-template #content>
+        <span> No offers found</span>
+      </ng-template>
+    </nz-empty>
+  </div>
+  <div class="options">
     <div class="button-group" *ngIf="offers && offers.length > 0">Widok:
-      <nz-radio-group class="button-group" [(ngModel)]="columns" nzButtonStyle="solid">
+      <nz-radio-group [(ngModel)]="columns" nzButtonStyle="solid">
         <label class="label-column" nz-radio-button nzValue="1">1</label>
         <label class="label-column" nz-radio-button nzValue="3">3</label>
       </nz-radio-group>
     </div>
+    <a routerLink="offers/create" class="btn button-success button-group">Dodaj ogłoszenie</a>
+    <div class="form-inline d-flex justify-content-center md-form form-sm active-cyan-2 mt-2">
+      <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Szukaj"
+             aria-label="Szukaj" [(ngModel)]="searchTerm">
+      <i class="search-icon" nz-icon nzType="search" nzTheme="outline"></i>
+    </div>
+    <div class="cities-options">
+      <mat-selection-list #selectedCities [(ngModel)]="searchCity">
+        <mat-list-option *ngFor="let city of cities" value="{{city}}">
+          {{city}}
+        </mat-list-option>
+      </mat-selection-list>
+    </div>
   </div>
-  <div nz-row [nzGutter]="[hGutter, vGutter]"  *ngIf="offers && offers.length > 0">
-    <app-offer-panel nz-col class="offer-row" [nzSpan]="24 / getColumnsNumber(columns)" *ngFor="let offer of offers"
-                     [offer]="offer" [confirmDeleteOffer] = "confirmDeleteOffer">
-    </app-offer-panel>
-  </div>
-  <nz-empty
-    class="no-offers"
-    *ngIf="!offers || offers.length === 0"
-    [nzNotFoundContent]="content"
-  >
-    <ng-template #content>
-      <span> No offers found</span>
-    </ng-template>
-  </nz-empty>
 </section>

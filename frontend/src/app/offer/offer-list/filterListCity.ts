@@ -1,0 +1,16 @@
+import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({
+  name: 'FilterlistCity'
+})
+export class FilterlistCity implements PipeTransform {
+
+  transform(value: any, args?: any): any {
+    if (!args)
+      return value;
+
+    return value.filter(val => args.some(function (item) {
+      return item.includes(val.localization.localizationName);
+    }));
+  }
+}
