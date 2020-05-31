@@ -20,4 +20,18 @@ export class OffersRestService {
   deleteOffer(offerId: string) {
     return this.http.delete<Offer>(`${this.OFFERS_ENDPOINT}/${offerId}`);
   }
+
+  modifyOffer(offerId: string, offer: Offer): Observable<Offer> {
+    const {name, phoneNumber, email} :any = offer;
+    const {country, region, zipCode, localizationName} :any = offer;
+
+    return this.http.post<Offer>(`${this.OFFERS_ENDPOINT}`, {
+      id: offerId,
+      content: offer.content,
+      title: offer.title,
+      isActive: true,
+      contact: {name, phoneNumber, email},
+      localization: {country, region, zipCode, localizationName}
+    });
+  }
 }

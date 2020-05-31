@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Offer} from "../../../model/Offer";
 import {FormControl, FormGroup} from "@angular/forms";
 import {Cities} from "../../../shared/cities.enum";
+import {NzModalRef} from "ng-zorro-antd";
 
 @Component({
   selector: 'app-offer-edit',
@@ -12,20 +13,23 @@ export class OfferEditComponent implements OnInit {
 
   validateForm: FormGroup;
   offer: Offer;
-  cities: Cities[]
+  cities: Cities[];
+  modifyOffer: any;
+  isVisible = true;
 
-  constructor() {}
+  constructor(private modal: NzModalRef) {}
 
   ngOnInit(): void {
     this.validateForm = new FormGroup({
       title: new FormControl(),
       name: new FormControl(),
-      phone: new FormControl(),
+      phoneNumber: new FormControl(),
       email: new FormControl(),
       country: new FormControl(),
       region: new FormControl(),
-      city: new FormControl(),
-      zipCode: new FormControl()
+      localizationName: new FormControl(),
+      zipCode: new FormControl(),
+      content: new FormControl()
     });
   }
 
@@ -34,7 +38,17 @@ export class OfferEditComponent implements OnInit {
       this.validateForm.controls[key].markAsDirty();
       this.validateForm.controls[key].updateValueAndValidity();
     }
-    console.log(value);
+    this.modifyOffer(this.offer.id, value);
+    this.isVisible = false;
+  }
+
+  saveNewData(): void {
+    this.submitForm(this.validateForm.value)
+    this.modal.close();
+  }
+
+  closeModal(): void {
+    this.modal.destroy();
   }
 
 }

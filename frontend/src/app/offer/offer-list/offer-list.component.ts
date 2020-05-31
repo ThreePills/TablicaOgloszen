@@ -38,11 +38,13 @@ export class OfferListComponent implements OnInit {
 
   editAdvertisement = (offer) => {
     this.modal.create({
+      nzWidth: "60%",
       nzTitle: `Edytuj ${offer.title}`,
       nzContent: OfferEditComponent,
       nzComponentParams: {
         offer: offer,
-        cities: this.cities
+        cities: this.cities,
+        modifyOffer: this.modifyOffer
       }
     });
   }
@@ -62,6 +64,17 @@ export class OfferListComponent implements OnInit {
   deleteOffer(offerId) {
     this.offersRestService.deleteOffer(offerId).subscribe(() => {
       this.offers = [...this.offers.filter(({id}) => id !== offerId)]
+    });
+  }
+
+  modifyOffer = (offerId, offer) => {
+    this.offersRestService.modifyOffer(offerId, offer).subscribe((newOffer) => {
+      const offerIndex = this.offers.findIndex(({id}) => id === offerId);
+      this.offers = [
+        ...this.offers.slice(0, offerIndex),
+        newOffer,
+        ...this.offers.slice(offerIndex + 1, this.offers.length)
+      ];
     });
   }
 
