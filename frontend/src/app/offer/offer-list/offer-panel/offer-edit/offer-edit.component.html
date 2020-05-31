@@ -1,0 +1,26 @@
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm(validateForm.value)">
+  <nz-form-item>
+    <nz-form-label [nzSpan]="5" nzRequired nzFor="note">Tytuł: </nz-form-label>
+    <nz-form-control [nzSpan]="12" nzErrorTip="Please input your username!">
+      <input id="title" type="text" nz-input formControlName="title" [(ngModel)]="offer.title" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="5" nzFor="gender" nzRequired>Gender</nz-form-label>
+    <nz-form-control [nzSpan]="12" nzErrorTip="Please select your gender!">
+      <nz-select
+        id="city"
+        formControlName="city"
+        [(ngModel)]="offer.title"
+      >
+        <nz-option nzValue="male" nzLabel="male"></nz-option>
+        <nz-option nzValue="female" nzLabel="female"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control [nzSpan]="12" [nzOffset]="5">
+      <button nz-button nzType="primary">Submit</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>

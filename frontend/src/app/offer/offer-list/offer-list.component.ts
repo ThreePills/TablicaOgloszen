@@ -6,6 +6,7 @@ import {Offer} from "../model/Offer";
 import {ActivatedRoute} from "@angular/router";
 import {OffersRestService} from "../shared/offers-rest.service";
 import {NzModalService} from "ng-zorro-antd/modal";
+import {OfferEditComponent} from "./offer-panel/offer-edit/offer-edit.component";
 
 @Component({
   selector: 'app-offer-list',
@@ -29,6 +30,20 @@ export class OfferListComponent implements OnInit {
 
   getColumnsNumber(columns: String) {
     return +columns
+  }
+
+  editAdvertisement = (offer) => {
+    this.modal.create({
+      nzTitle: `Edytuj ${offer.title}`,
+      nzContent: OfferEditComponent,
+      nzComponentParams: {
+        offer: offer
+      },
+      nzOkText: 'Ok',
+      // nzOnOk: () => this.deleteOffer(offerId),
+      nzCancelText: 'Anuluj',
+      nzOnCancel: () => console.log('Editing offer canceled')
+    });
   }
 
   confirmDeleteOffer = (offerTitle, offerId) => {

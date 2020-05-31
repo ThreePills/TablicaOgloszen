@@ -10,7 +10,7 @@
   </div>
   <div nz-row [nzGutter]="[hGutter, vGutter]"  *ngIf="offers && offers.length > 0">
     <app-offer-panel nz-col class="offer-row" [nzSpan]="24 / getColumnsNumber(columns)" *ngFor="let offer of offers"
-                     [offer]="offer" [confirmDeleteOffer] = "confirmDeleteOffer">
+                     [offer]="offer" [confirmDeleteOffer] = "confirmDeleteOffer" [editAdvertisement]="editAdvertisement">
     </app-offer-panel>
   </div>
   <nz-empty
