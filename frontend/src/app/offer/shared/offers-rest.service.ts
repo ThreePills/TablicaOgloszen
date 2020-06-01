@@ -34,4 +34,8 @@ export class OffersRestService {
       localization: {country, region, zipCode, localizationName}
     });
   }
+
+  save(offer: Offer): Observable<Offer> {
+    return this.http.post<Offer>(`${this.OFFERS_ENDPOINT}`, offer);
+  }
 }
