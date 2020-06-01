@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Offer} from "../../../model/Offer";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Cities} from "../../../shared/cities.enum";
 import {NzModalRef} from "ng-zorro-antd";
 
@@ -23,13 +23,13 @@ export class OfferEditComponent implements OnInit {
     this.validateForm = new FormGroup({
       title: new FormControl(),
       name: new FormControl(),
-      phoneNumber: new FormControl(),
-      email: new FormControl(),
+      phoneNumber: new FormControl('', [Validators.minLength(6), Validators.maxLength(10)]),
+      email: new FormControl('',[Validators.email]),
       country: new FormControl(),
       region: new FormControl(),
       localizationName: new FormControl(),
       zipCode: new FormControl(),
-      content: new FormControl()
+      content: new FormControl('',[Validators.minLength(10)])
     });
   }
 

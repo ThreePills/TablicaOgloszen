@@ -1,44 +1,44 @@
 <form nz-form [formGroup]="validateForm">
     <nz-form-item>
-      <nz-form-label [nzSpan]="5" nzRequired nzFor="note">Tytuł </nz-form-label>
+      <nz-form-label [nzSpan]="5" nzRequired nzFor="title">Tytuł </nz-form-label>
       <nz-form-control [nzSpan]="12" nzErrorTip="Tytuł wymagany!">
         <input id="title" type="text" nz-input formControlName="title" required [ngModel]="offer.title" />
       </nz-form-control>
     </nz-form-item>
     <nz-form-label>Kontakt</nz-form-label>
     <nz-form-item>
-      <nz-form-label [nzSpan]="5" nzRequired nzFor="note">Autor </nz-form-label>
+      <nz-form-label [nzSpan]="5" nzRequired nzFor="name">Autor </nz-form-label>
       <nz-form-control [nzSpan]="12" nzErrorTip="Autor wymagany!">
         <input id="name" type="text" nz-input formControlName="name" required [ngModel]="offer.contact.name" />
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label [nzSpan]="5" nzRequired nzFor="note">Nr. telefonu </nz-form-label>
-      <nz-form-control [nzSpan]="12" nzErrorTip="Nr. telefonu wymagany!">
-        <input id="phoneNumber" type="text" nz-input formControlName="phoneNumber" required [ngModel]="offer.contact.phoneNumber" />
+      <nz-form-label [nzSpan]="5" nzRequired nzFor="phoneNumber">Nr. telefonu </nz-form-label>
+      <nz-form-control [nzSpan]="12" nzErrorTip="Nr. telefonu musi zawierac od 6 do 9 znaków!">
+        <input id="phoneNumber" type="tel" nz-input formControlName="phoneNumber" required [ngModel]="offer.contact.phoneNumber" />
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label [nzSpan]="5" nzRequired nzFor="note">E-mail </nz-form-label>
-      <nz-form-control [nzSpan]="12" nzErrorTip="E-mail wymagany!">
+      <nz-form-label [nzSpan]="5" nzRequired nzFor="email">E-mail </nz-form-label>
+      <nz-form-control [nzSpan]="12" nzErrorTip="Zły format E-mail!">
         <input id="email" type="text" nz-input formControlName="email" required [ngModel]="offer.contact.email" />
       </nz-form-control>
     </nz-form-item>
     <nz-form-label>Adres</nz-form-label>
     <nz-form-item>
-      <nz-form-label [nzSpan]="5" nzRequired nzFor="note">Państwo </nz-form-label>
+      <nz-form-label [nzSpan]="5" nzRequired nzFor="country">Państwo </nz-form-label>
       <nz-form-control [nzSpan]="12" nzErrorTip="Kraj wymagany!">
         <input id="country" type="text" nz-input formControlName="country" required [ngModel]="offer.localization.country" />
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label [nzSpan]="5" nzRequired nzFor="note">Województwo </nz-form-label>
+      <nz-form-label [nzSpan]="5" nzRequired nzFor="region">Województwo </nz-form-label>
       <nz-form-control [nzSpan]="12" nzErrorTip="Województwo wymagane!">
         <input id="region" formControlName="region" type="text" nz-input required [ngModel]="offer.localization.region" />
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label [nzSpan]="5" nzFor="gender" nzRequired>Miasto </nz-form-label>
+      <nz-form-label [nzSpan]="5" nzFor="localizationName" nzRequired>Miasto </nz-form-label>
       <nz-form-control [nzSpan]="12" nzErrorTip="Miasto wymagane!">
         <nz-select
           id="localizationName"
@@ -52,14 +52,14 @@
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label [nzSpan]="5" nzRequired nzFor="note">Kod pocztowy </nz-form-label>
+      <nz-form-label [nzSpan]="5" nzRequired nzFor="zipCode">Kod pocztowy </nz-form-label>
       <nz-form-control [nzSpan]="12" nzErrorTip="Kod pocztowy wymagany!">
         <input id="zipCode" required formControlName="zipCode" type="text" nz-input [ngModel]="offer.localization.zipCode" />
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label [nzSpan]="5" nzRequired nzFor="note">Treść </nz-form-label>
-      <nz-form-control [nzSpan]="12" nzErrorTip="Treść wymagana!">
+      <nz-form-label [nzSpan]="5" nzRequired nzFor="content">Treść </nz-form-label>
+      <nz-form-control [nzSpan]="12" nzErrorTip="Treść musi zawierać min 10 znaków!">
         <textarea  id="content" required formControlName="content" type="text" nz-input [ngModel]="offer.content"></textarea>
       </nz-form-control>
     </nz-form-item>
