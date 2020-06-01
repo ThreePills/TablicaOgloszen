@@ -15,6 +15,7 @@ public class OfferController {
 
         private final OfferService offerService;
 
+        @CrossOrigin("http://localhost:4200" )
         @PostMapping
         @ResponseBody
         public ResponseEntity<Offer> addOffer(@RequestBody Offer offer) {

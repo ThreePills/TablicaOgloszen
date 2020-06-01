@@ -20,4 +20,8 @@ export class OffersRestService {
   deleteOffer(offerId: string) {
     return this.http.delete<Offer>(`${this.OFFERS_ENDPOINT}/${offerId}`);
   }
+
+  save(offer: Offer): Observable<Offer> {
+    return this.http.post<Offer>(`${this.OFFERS_ENDPOINT}`, offer);
+  }
 }

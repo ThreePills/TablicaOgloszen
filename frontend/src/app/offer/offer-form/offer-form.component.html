@@ -71,6 +71,12 @@
           <div *ngIf="phoneNumber.errors.required">
             Numer telefonu jest wymagany.
           </div>
+          <div *ngIf="phoneNumber.errors.minLength">
+            Numer telefonu musi się składać z co najmniej <b>6</b> cyfr.
+          </div>
+          <div *ngIf="phoneNumber.errors.maxLength">
+            Numer telefonu może się składać z co najwyżej <b>10</b> cyfr.
+          </div>
         </div>
       </div>
     </div>
@@ -116,8 +122,12 @@
 
       <div class="form-group" formGroupName="localization">
         <label for="localizationName">Miejscowość</label>
-        <input class="form-control" id="localizationName" type="text" formControlName="localizationName"
-               [required]="offerForm">
+        <select class="form-control" name="localizationName"
+                id="localizationName" [required]="offerForm" formControlName="localizationName">
+          <option *ngFor="let city of keys(cities)" [ngValue]="cities[city]">
+            {{cities[city]}}
+          </option>
+        </select>
 
         <div *ngIf="localizationName.invalid && (localizationName.dirty || localizationName.touched)"
              class="alert alert-danger">

@@ -1,6 +1,10 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Offer} from "../model/Offer";
+import {OffersRestService} from "../shared/offers-rest.service";
+import {Cities} from "../shared/cities.enum";
+import {NzModalService} from "ng-zorro-antd/modal";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-offer-form',
@@ -10,11 +14,10 @@ import {Offer} from "../model/Offer";
 export class OfferFormComponent implements OnInit {
 
   offerForm;
+  keys = Object.keys;
+  cities = Cities;
 
-  @Output() saved = new EventEmitter<Offer>();
-
-  // TODO: add offer rest service
-  constructor() {
+  constructor(private readonly offersService: OffersRestService, private modal: NzModalService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -26,24 +29,28 @@ export class OfferFormComponent implements OnInit {
       contact: new FormGroup({
         name: new FormControl('', [Validators.required]),
         email: new FormControl('', [Validators.required, Validators.email]),
-        phoneNumber: new FormControl('', [Validators.required]),
+        phoneNumber: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(10)]),
       }),
 
       localization: new FormGroup({
         country: new FormControl('', [Validators.required]),
         region: new FormControl('', [Validators.required]),
         zipCode: new FormControl('', [Validators.required]),
-        localizationName: new FormControl('', [Validators.required]),
+        localizationName: new FormControl(this.cities.WROCLAW, [Validators.required]),
       })
     });
   }
 
   onSubmit(formData) {
     if (this.offerForm.valid) {
-      //this.offerService.save(formData).subscribe((offer: Offer) => this.changed.emit(offer));
-      this.saved.emit(formData);
-
-      this.offerForm.reset();
+      this.offersService.save(formData).subscribe(
+        (offer: Offer) => console.log(offer),
+        err => this.modal.error({
+          nzTitle: `Niestety wystąpił błąd`,
+          nzContent: `${err.message}`
+        }),
+        () => this.router.navigate([''])
+      );
     }
   }
 
