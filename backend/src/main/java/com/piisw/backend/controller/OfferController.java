@@ -15,12 +15,14 @@ public class OfferController {
 
         private final OfferService offerService;
 
+        @CrossOrigin("http://localhost:4200" )
         @PostMapping
         @ResponseBody
         public ResponseEntity<Offer> addOffer(@RequestBody Offer offer) {
                 return ResponseEntity.ok(offerService.insertOffer(offer));
         }
 
+        @CrossOrigin("http://localhost:4200" )
         @GetMapping (value = "/all")
         @ResponseBody
         public ResponseEntity<List<Offer>> getOffers() {

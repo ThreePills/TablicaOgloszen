@@ -7,6 +7,7 @@ import {ActivatedRoute} from "@angular/router";
 import {OffersRestService} from "../shared/offers-rest.service";
 import {NzModalService} from "ng-zorro-antd/modal";
 import {Cities} from "../shared/cities.enum";
+import {OfferEditComponent} from "./offer-panel/offer-edit/offer-edit.component";
 
 @Component({
   selector: 'app-offer-list',
@@ -35,6 +36,19 @@ export class OfferListComponent implements OnInit {
     return +columns
   }
 
+  editAdvertisement = (offer) => {
+    this.modal.create({
+      nzWidth: "60%",
+      nzTitle: `Edytuj ${offer.title}`,
+      nzContent: OfferEditComponent,
+      nzComponentParams: {
+        offer: offer,
+        cities: this.cities,
+        modifyOffer: this.modifyOffer
+      }
+    });
+  }
+
   confirmDeleteOffer = (offerTitle, offerId) => {
     this.modal.confirm({
       nzTitle: `Potwierdzenie`,
@@ -50,6 +64,17 @@ export class OfferListComponent implements OnInit {
   deleteOffer(offerId) {
     this.offersRestService.deleteOffer(offerId).subscribe(() => {
       this.offers = [...this.offers.filter(({id}) => id !== offerId)]
+    });
+  }
+
+  modifyOffer = (offerId, offer) => {
+    this.offersRestService.modifyOffer(offerId, offer).subscribe((newOffer) => {
+      const offerIndex = this.offers.findIndex(({id}) => id === offerId);
+      this.offers = [
+        ...this.offers.slice(0, offerIndex),
+        newOffer,
+        ...this.offers.slice(offerIndex + 1, this.offers.length)
+      ];
     });
   }
 

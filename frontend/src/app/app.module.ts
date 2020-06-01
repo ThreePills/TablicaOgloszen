@@ -21,12 +21,14 @@ import {
   NzIconModule,
   NzRadioModule,
   NzToolTipModule,
+  NzInputModule, NzFormModule, NzSelectModule
 } from "ng-zorro-antd";
 import { OfferFormComponent } from './offer/offer-form/offer-form.component';
 import {AppRoutingModule} from "./app-routing.module";
 import {FilterlistTitle} from "./offer/offer-list/filterListTitle";
 import {MatListModule} from "@angular/material/list";
 import {FilterlistCity} from "./offer/offer-list/filterListCity";
+import { OfferEditComponent } from './offer/offer-list/offer-panel/offer-edit/offer-edit.component';
 
 registerLocaleData(en);
 
@@ -37,7 +39,8 @@ registerLocaleData(en);
     OfferPanelComponent,
     OfferFormComponent,
     FilterlistTitle,
-    FilterlistCity
+    FilterlistCity,
+    OfferEditComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +59,10 @@ registerLocaleData(en);
     NzEmptyModule,
     NzDropDownModule,
     NzModalModule,
-    MatListModule
+    MatListModule,
+    NzInputModule,
+    NzFormModule,
+    NzSelectModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]
