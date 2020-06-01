@@ -22,6 +22,7 @@ public class OfferController {
                 return ResponseEntity.ok(offerService.insertOffer(offer));
         }
 
+        @CrossOrigin("http://localhost:4200" )
         @GetMapping (value = "/all")
         @ResponseBody
         public ResponseEntity<List<Offer>> getOffers() {

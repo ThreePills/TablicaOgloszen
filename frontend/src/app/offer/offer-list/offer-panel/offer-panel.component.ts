@@ -12,6 +12,8 @@ export class OfferPanelComponent implements OnInit {
   offer: Offer
   @Input()
   confirmDeleteOffer
+  @Input()
+  editAdvertisement
 
   constructor() { }
 
