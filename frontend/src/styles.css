@@ -2,10 +2,13 @@
 @import "~ng-zorro-antd/ng-zorro-antd.min.css";
 @import "~bootstrap/dist/css/bootstrap.css";
 
-body{
+html, body { height: 100%; }
+body {
   margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
   background-color: var(--background-color) !important;
 }
+
 header {
   background-color: var(--background-color-header);
   border-radius: 0.5em;
@@ -17,5 +20,6 @@ header {
   margin: 1em;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.deleted{
+  filter: blur(4px);
+}

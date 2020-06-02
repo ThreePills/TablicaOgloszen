@@ -1,5 +1,5 @@
 import {
-  Component,
+  Component, Input,
   OnInit,
 } from '@angular/core'
 import {Offer} from "../model/Offer";
@@ -23,14 +23,23 @@ export class OfferListComponent implements OnInit {
   searchTerm: string;
   searchCity: string;
   cities = Object.values(Cities);
+  loadingOffers = false;
 
   constructor(private readonly route: ActivatedRoute, private offersRestService: OffersRestService, private modal: NzModalService) {}
 
   ngOnInit(): void {
     console.log('Offers');
+    this.loadOffers();
     this.offers = this.route.snapshot.data.offers;
   }
 
+  loadOffers() {
+    this.loadingOffers = true;
+    this.offersRestService.findAll().subscribe(offers => {
+      this.offers = offers;
+      this.loadingOffers = false;
+    });
+  }
 
   getColumnsNumber(columns: String) {
     return +columns
