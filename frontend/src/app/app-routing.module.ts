@@ -7,10 +7,7 @@ import { OfferListComponent } from './offer/offer-list/offer-list.component';
 const routes: Routes = [
   {
     path: '',
-    component: OfferListComponent,
-    resolve: {
-      offers: OfferListResolver,
-    },
+    component: OfferListComponent
   },
   {
     path: 'offers/create',

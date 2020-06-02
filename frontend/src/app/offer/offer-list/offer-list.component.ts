@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,Input, OnInit } from '@angular/core';
 import { Offer } from '../model/Offer';
 import { ActivatedRoute } from '@angular/router';
 import { OffersRestService } from '../shared/offers-rest.service';
@@ -19,6 +19,7 @@ export class OfferListComponent implements OnInit {
   searchTerm: string;
   searchCity: string;
   cities = Object.values(Cities);
+  loadingOffers = false;
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -28,11 +29,20 @@ export class OfferListComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('Offers');
+    this.loadOffers();
     this.offers = this.route.snapshot.data.offers;
   }
 
+  loadOffers() {
+    this.loadingOffers = true;
+    this.offersRestService.findAll().subscribe(offers => {
+      this.offers = offers;
+      this.loadingOffers = false;
+    });
+  }
+
   getColumnsNumber(columns: string) {
-    return +columns;
+    return +columns
   }
 
   editAdvertisement = (offer) => {

@@ -1,4 +1,4 @@
-<div class="offer-panel">
+<div [ngClass]="{'offer-panel': true, 'deleted':deleted}">
   <div class="offer-header">
     <div class="offer-left-header">
       <p class="offer-title">{{ offer.title }}</p>
@@ -11,7 +11,7 @@
     <nz-dropdown-menu class="dropdown-menu" #offerMenu="nzDropdownMenu">
       <ul nz-menu>
         <li nz-menu-item (click)="editAdvertisement(offer)">Edytuj ogłoszenie</li>
-        <li nz-menu-item (click)="confirmDeleteOffer(offer.title, offer.id)">Usuń ogłoszenie</li>
+        <li nz-menu-item (click)="deleteOffer()">Usuń ogłoszenie</li>
       </ul>
     </nz-dropdown-menu>
   </div>

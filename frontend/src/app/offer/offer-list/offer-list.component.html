@@ -1,4 +1,10 @@
-<section class="offer-section">
+<div class="overlay" *ngIf="loadingOffers">
+  <div class="spinner-wrapper">
+    <app-spinner-loader></app-spinner-loader>
+  </div>
+</div>
+
+<section class="offer-section" [class.blurred]="loadingOffers">
   <div class="offer-list">
     <div nz-row [nzGutter]="[hGutter, vGutter]"  *ngIf="offers && offers.length > 0">
       <app-offer-panel nz-col class="offer-row" [nzSpan]="24 / getColumnsNumber(columns)" *ngFor="let offer of offers | FilterlistTitle:searchTerm | FilterlistCity: searchCity"
@@ -7,7 +13,7 @@
     </div>
     <nz-empty
       class="no-offers"
-      *ngIf="!offers || offers.length === 0"
+      *ngIf="(!offers || offers.length === 0) && !loadingOffers"
       [nzNotFoundContent]="content"
     >
       <ng-template #content>
