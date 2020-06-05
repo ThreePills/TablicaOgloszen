@@ -1,5 +1,15 @@
 package com.piisw.backend.controller;
 
+import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.piisw.backend.entity.Contact;
 import com.piisw.backend.entity.Localization;
@@ -16,24 +26,12 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import java.util.ArrayList;
-import java.util.List;
-
 @RunWith (SpringJUnit4ClassRunner.class)
 public class OfferControllersTests {
         private OfferService offerService;
         private OfferController offerController;
         private MockMvc mockMvc;
-        private List<Offer> offerList;
         private ObjectMapper mapper;
-
 
         @Before
         public void setUp() {
@@ -41,25 +39,7 @@ public class OfferControllersTests {
                 offerService = Mockito.mock(OfferService.class);
                 offerController = new OfferController(offerService);
                 mockMvc = MockMvcBuilders.standaloneSetup(offerController).build();
-                offerList = new ArrayList<Offer>();
-                Offer activeOffer = new Offer();
-                Contact contact = new Contact(1L, "contact 1", "contact1@mail", 4566);
-                Localization localization = new Localization(1L, "country 1", "region 1", "44-333", "Local name");
-                activeOffer.setId(1L);
-                activeOffer.setLocalization(localization);
-                activeOffer.setActive(Boolean.TRUE);
-                activeOffer.setTitle("Offer title 1");
-                activeOffer.setContent("Offer 1 content");
-                activeOffer.setContact(contact);
-                offerList.add(activeOffer);
-                Offer inactiveOffer = new Offer();
-                inactiveOffer.setId(2L);
-                inactiveOffer.setContact(contact);
-                inactiveOffer.setContent("Offer 2 content");
-                inactiveOffer.setTitle("Offer 2 title");
-                inactiveOffer.setActive(Boolean.FALSE);
-                inactiveOffer.setLocalization(localization);
-                offerList.add(inactiveOffer);
+
         }
 
         @After
@@ -71,6 +51,22 @@ public class OfferControllersTests {
 
         @Test
         public void testGetAllWithStatusOk() throws Exception {
+
+                List<Offer> offerList = new ArrayList<Offer>();
+
+                Contact contact = Contact.builder().id(1L).name("contact 1").email("contact1@mail").phoneNumber(4566)
+                                         .build();
+                Localization localization = Localization.builder().id(1L).country("country 1").region("region 1")
+                                                        .zipCode("44-333").localizationName("Local name").build();
+                Offer activeOffer = Offer.builder().id(1L).localization(localization).isActive(Boolean.TRUE)
+                                         .title("Offer title 1").content("Offer 1 content").contact(contact).build();
+
+                Offer inactiveOffer = Offer.builder().id(2L).contact(contact).content("Offer 2 content")
+                                           .title("Offer 2 title").isActive(Boolean.FALSE).localization(localization)
+                                           .build();
+                offerList.add(activeOffer);
+                offerList.add(inactiveOffer);
+
                 given(this.offerService.findAllOffers()).willReturn(offerList);
 
                 this.mockMvc.perform(get("/offer/all").accept(MediaType.APPLICATION_JSON))
@@ -98,9 +94,24 @@ public class OfferControllersTests {
 
         @Test
         public void testGetAllActiveWithStatusOk() throws Exception {
+                List<Offer> offerList = new ArrayList<Offer>();
+
+                Contact contact = Contact.builder().id(1L).name("contact 1").email("contact1@mail").phoneNumber(4566)
+                                         .build();
+                Localization localization = Localization.builder().id(1L).country("country 1").region("region 1")
+                                                        .zipCode("44-333").localizationName("Local name").build();
+                Offer activeOffer = Offer.builder().id(1L).localization(localization).isActive(Boolean.TRUE)
+                                         .title("Offer title 1").content("Offer 1 content").contact(contact).build();
+
+                Offer inactiveOffer = Offer.builder().id(2L).contact(contact).content("Offer 2 content")
+                                           .title("Offer 2 title").isActive(Boolean.FALSE).localization(localization)
+                                           .build();
+                offerList.add(activeOffer);
+                offerList.add(inactiveOffer);
+
                 offerList.remove(1);
-                given(this.offerService.findAllActiveOffers()).willReturn(offerList);
-                mockMvc.perform(get("/offer/allActive"))
+                given(this.offerService.findOffersByIsActive(Boolean.TRUE)).willReturn(offerList);
+                mockMvc.perform(get("/offer/true"))
                        .andExpect(status().isOk())
                        .andExpect(jsonPath("$.length()").value(1))
                        .andExpect(jsonPath("$.[0].id").value(1))
@@ -118,14 +129,14 @@ public class OfferControllersTests {
         }
 
         @Test
-        public void testGetAllActiveWithStatusMethodNotAllowed() throws Exception {
-                final ResultActions resultActions = mockMvc.perform(get("/offer/alActiv"));
-                resultActions.andExpect(status().isMethodNotAllowed());
-        }
-
-        @Test
         public void testPostOfferWithStatusOk() throws Exception {
-                Offer offer = offerList.get(0);
+
+                Contact contact = Contact.builder().id(1L).name("contact 1").email("contact1@mail").phoneNumber(4566)
+                                         .build();
+                Localization localization = Localization.builder().id(1L).country("country 1").region("region 1")
+                                                        .zipCode("44-333").localizationName("Local name").build();
+                Offer offer = Offer.builder().id(1L).localization(localization).isActive(Boolean.TRUE)
+                                   .title("Offer title 1").content("Offer 1 content").contact(contact).build();
 
                 this.mockMvc.perform(post("/offer").content(mapper.writeValueAsString(offer))
                                                    .contentType(MediaType.APPLICATION_JSON_VALUE))
@@ -149,9 +160,15 @@ public class OfferControllersTests {
         @Test
         public void testPutOfferWithStatusOk() throws Exception {
 
-                Offer offer = offerList.get(0);
+                Contact contact = Contact.builder().id(1L).name("contact 1").email("contact1@mail").phoneNumber(4566)
+                                         .build();
+                Localization localization = Localization.builder().id(1L).country("country 1").region("region 1")
+                                                        .zipCode("44-333").localizationName("Local name").build();
+                Offer offer = Offer.builder().id(1L).localization(localization).isActive(Boolean.TRUE)
+                                   .title("Offer title 1").content("Offer 1 content").contact(contact).build();
+
                 offer.setTitle("new title");
-                given(this.offerService.insertOffer(offer)).willReturn(offerList.get(0));
+                given(this.offerService.insertOffer(offer)).willReturn(offer);
 
 
                 this.mockMvc.perform(post("/offer").content(mapper.writeValueAsString(offer))
@@ -170,17 +187,16 @@ public class OfferControllersTests {
 
         @Test
         public void testDeleteOfferWithStatusOk() throws Exception {
+                Contact contact = Contact.builder().id(1L).name("contact 1").email("contact1@mail").phoneNumber(4566)
+                                         .build();
+                Localization localization = Localization.builder().id(1L).country("country 1").region("region 1")
+                                                        .zipCode("44-333").localizationName("Local name").build();
+                Offer offer = Offer.builder().id(1L).localization(localization).isActive(Boolean.TRUE)
+                                   .title("Offer title 1").content("Offer 1 content").contact(contact).build();
 
-                this.mockMvc.perform(delete("/offer/" + offerList.get(0).getId()))
+
+                this.mockMvc.perform(delete("/offer/" + offer.getId()))
                             .andExpect(status().isOk());
         }
-
-        @Test
-        public void testDeleteOfferWithStatusMethodNotAllowed() throws Exception {
-                final ResultActions resultActions = mockMvc.perform(get("/offer/" + offerList.get(0).getId()));
-
-                resultActions.andExpect(status().isMethodNotAllowed());
-        }
-
 
 }

@@ -2,31 +2,33 @@ package com.piisw.backend.service;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.when;
-
-import java.util.Arrays;
 
 import com.piisw.backend.entity.Localization;
-import com.piisw.backend.repository.LocalizationRepository;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-@RunWith (MockitoJUnitRunner.class)
+@Ignore
+@SpringBootTest
+@RunWith (SpringJUnit4ClassRunner.class)
+@AutoConfigureTestDatabase
 public class LocalizationServiceTests {
 
-        @Mock
-        LocalizationRepository localizationRepository;
-
-        @InjectMocks
+        @Autowired
         LocalizationService localizationService;
 
         @Test
         public void testUpdateLocalization() {
-                Localization localization = new Localization(1L, "country1", "region1", "58-120", "localization1");
-                when(localizationService.updateLocalizationInOffer(localization)).thenReturn(localization);
+                Localization localization = Localization.builder()
+                                                        .country("country test")
+                                                        .region("region test")
+                                                        .localizationName("localization")
+                                                        .zipCode("58-333")
+                                                        .build();
 
                 Localization localizationUpdated = localizationService.updateLocalizationInOffer(localization);
 

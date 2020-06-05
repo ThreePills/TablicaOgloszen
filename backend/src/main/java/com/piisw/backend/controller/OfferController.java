@@ -34,10 +34,10 @@ public class OfferController {
                 return ResponseEntity.ok(offerService.findAllOffers());
         }
 
-        @GetMapping (value = "/allActive")
+        @GetMapping (value = "/{isActive}")
         @ResponseBody
-        public ResponseEntity<List<Offer>> getActiveOffers() {
-                return ResponseEntity.ok(offerService.findAllActiveOffers());
+        public ResponseEntity<List<Offer>> getOffersByIsActive(@PathVariable Boolean isActive) {
+                return ResponseEntity.ok(offerService.findOffersByIsActive(isActive));
         }
 
         @DeleteMapping ("/{id}")

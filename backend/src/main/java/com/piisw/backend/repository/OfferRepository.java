@@ -1,8 +1,6 @@
 package com.piisw.backend.repository;
 
 import java.util.List;
-import java.util.Optional;
-
 import javax.transaction.Transactional;
 
 import com.piisw.backend.entity.Offer;
@@ -16,8 +14,6 @@ import org.springframework.stereotype.Repository;
 public interface OfferRepository extends JpaRepository<Offer, Long> {
 
         List<Offer> findAll();
-
-        Optional<Offer> findById(Long id);
 
         List<Offer> findAllByIsActive(Boolean isActive);
 

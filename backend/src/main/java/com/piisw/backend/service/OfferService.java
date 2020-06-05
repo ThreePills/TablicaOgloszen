@@ -2,6 +2,7 @@ package com.piisw.backend.service;
 
 import java.util.List;
 import java.util.Optional;
+import javax.transaction.Transactional;
 
 import com.piisw.backend.entity.Offer;
 import com.piisw.backend.repository.OfferRepository;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 @AllArgsConstructor
 @Service
+@Transactional
 public class OfferService {
 
         private final OfferRepository offerRepository;
@@ -20,8 +22,8 @@ public class OfferService {
                 return offerRepository.findAll();
         }
 
-        public List<Offer> findAllActiveOffers() {
-                return offerRepository.findAllByIsActive(Boolean.TRUE);
+        public List<Offer> findOffersByIsActive(Boolean isActive) {
+                return offerRepository.findAllByIsActive(isActive);
         }
 
         public Offer insertOffer(Offer offer) {
@@ -35,13 +37,8 @@ public class OfferService {
                         offerOptional = offerRepository
                                 .findById(offer.getId());
                 }
+                return offerOptional.map(o -> updateOfferDetails(o, offer)).orElse(offerRepository.save(offer));
 
-                if (offerOptional.isPresent()) {
-                        return updateOfferDetails(offerOptional.get(), offer);
-
-                } else {
-                        return offerRepository.save(offer);
-                }
         }
 
         private Offer updateOfferDetails(Offer offerCopy,

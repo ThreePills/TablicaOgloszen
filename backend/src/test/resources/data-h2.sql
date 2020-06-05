@@ -17,3 +17,6 @@ INSERT INTO offer (id, content, is_active, title, contact_id, localization_id) V
 INSERT INTO offer (id, content, is_active, title, contact_id, localization_id) VALUES (5, 'Sprzedam auto', true, 'Sprzedam auto za darmo', 1, 2);
 INSERT INTO offer (id, content, is_active, title, contact_id, localization_id) VALUES (6, 'Kupię psa', false, 'Kupiłem', 1, 2);
 INSERT INTO offer (id, content, is_active, title, contact_id, localization_id) VALUES (7, 'Wynajmę mieszkanie', false, 'Wynajęte mieszkanie', 2, 1);
+commit;
+alter sequence contact_seq restart with 4;
+alter sequence offer_seq restart with 8;

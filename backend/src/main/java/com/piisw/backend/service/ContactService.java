@@ -14,11 +14,12 @@ public class ContactService {
         private final ContactRepository contactRepository;
 
         Contact upadateContactInOffer(Contact offerContact) {
-                Optional<Contact> contactOptional = contactRepository.findAll().stream()
-                                                                     .filter(contact -> contact
-                                                                             .equals(offerContact))
-                                                                     .findFirst();
+                return contactRepository.findAll().stream()
+                                        .filter(contact -> contact.equals(offerContact))
+                                        .findFirst().orElseGet(() -> contactRepository.save(offerContact));
+        }
 
-                return contactOptional.orElseGet(() -> contactRepository.save(offerContact));
+        Optional<Contact> findById(Long id) {
+                return contactRepository.findById(id);
         }
 }

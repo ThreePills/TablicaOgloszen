@@ -8,20 +8,20 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotNull;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 @Entity
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
+@SuperBuilder
 @EqualsAndHashCode
 public class Localization implements Serializable {
 
         @Id
-        @SequenceGenerator (name = "LOCALIZATIION_ID_GENERATOR", sequenceName = "LOCALIZATION_SEQ", allocationSize = 1)
+        @SequenceGenerator (name = "LOCALIZATIION_ID_GENERATOR", sequenceName = "LOCAL_SEQ", allocationSize = 1)
         @GeneratedValue (strategy = GenerationType.SEQUENCE, generator = "LOCALIZATION_ID_GENERATOR")
         @EqualsAndHashCode.Exclude
         private Long id;
