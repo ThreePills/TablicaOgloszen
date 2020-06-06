@@ -39,7 +39,6 @@ public class OfferControllersTests {
                 offerService = Mockito.mock(OfferService.class);
                 offerController = new OfferController(offerService);
                 mockMvc = MockMvcBuilders.standaloneSetup(offerController).build();
-
         }
 
         @After
@@ -168,8 +167,7 @@ public class OfferControllersTests {
                                    .title("Offer title 1").content("Offer 1 content").contact(contact).build();
 
                 offer.setTitle("new title");
-                given(this.offerService.insertOffer(offer)).willReturn(offer);
-
+                given(this.offerService.addOfferOrUpdateIfExists(offer)).willReturn(offer);
 
                 this.mockMvc.perform(post("/offer").content(mapper.writeValueAsString(offer))
                                                    .contentType(MediaType.APPLICATION_JSON_VALUE))

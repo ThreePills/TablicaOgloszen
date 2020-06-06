@@ -20,5 +20,5 @@ public interface OfferRepository extends JpaRepository<Offer, Long> {
         @Modifying
         @Transactional
         @Query ("update Offer offer set offer.isActive = false where offer.id = :id")
-        void removeOffer(@Param ("id") Long id);
+        void deactivateOffer(@Param ("id") Long id);
 }

@@ -26,7 +26,7 @@ public class OfferService {
                 return offerRepository.findAllByIsActive(isActive);
         }
 
-        public Offer insertOffer(Offer offer) {
+        public Offer addOfferOrUpdateIfExists(Offer offer) {
                 Optional<Offer> offerOptional = Optional.empty();
 
                 offer.setContact(contactService.upadateContactInOffer(offer.getContact()));
@@ -52,8 +52,8 @@ public class OfferService {
                 return offerRepository.save(offerCopy);
         }
 
-        public void removeOffer(Long offerId) {
-                offerRepository.removeOffer(offerId);
+        public void deactivateOffer(Long offerId) {
+                offerRepository.deactivateOffer(offerId);
 
         }
 

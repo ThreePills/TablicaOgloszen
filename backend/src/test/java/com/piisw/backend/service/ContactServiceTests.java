@@ -21,7 +21,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class ContactServiceTests {
 
         @Autowired
-        ContactService contactService;
+        private ContactService contactService;
 
         @Test
         public void testUpdateContactShouldReturnExistingContact() {

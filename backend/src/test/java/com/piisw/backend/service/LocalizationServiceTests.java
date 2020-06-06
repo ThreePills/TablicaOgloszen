@@ -19,7 +19,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class LocalizationServiceTests {
 
         @Autowired
-        LocalizationService localizationService;
+        private LocalizationService localizationService;
 
         @Test
         public void testUpdateLocalization() {

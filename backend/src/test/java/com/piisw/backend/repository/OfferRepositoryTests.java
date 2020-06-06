@@ -21,11 +21,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class OfferRepositoryTests {
 
         @Autowired
-        ContactRepository contactRepository;
+        private ContactRepository contactRepository;
         @Autowired
-        LocalizationRepository localizationRepository;
+        private LocalizationRepository localizationRepository;
         @Autowired
-        OfferRepository offerRepository;
+        private OfferRepository offerRepository;
 
         @Test
         public void testFindOffersByIsActive() {

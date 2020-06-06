@@ -24,8 +24,8 @@ public class OfferController {
 
         @PostMapping
         @ResponseBody
-        public ResponseEntity<Offer> addOffer(@RequestBody Offer offer) {
-                return ResponseEntity.ok(offerService.insertOffer(offer));
+        public ResponseEntity<Offer> addOfferWithDetailsOrUpdateIfExists(@RequestBody Offer offer) {
+                return ResponseEntity.ok(offerService.addOfferOrUpdateIfExists(offer));
         }
 
         @GetMapping (value = "/all")
@@ -42,7 +42,7 @@ public class OfferController {
 
         @DeleteMapping ("/{id}")
         @ResponseBody
-        public void deleteOffer(@PathVariable Long id) {
-                offerService.removeOffer(id);
+        public void deactivateOffer(@PathVariable Long id) {
+                offerService.deactivateOffer(id);
         }
 }

@@ -5,6 +5,7 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import com.piisw.backend.entity.Contact;
@@ -25,14 +26,13 @@ public class OfferServiceTests {
 
         @Spy
         @Autowired
-        OfferRepository offerRepository;
+        private OfferRepository offerRepository;
         @Mock
-        ContactService contactService;
+        private ContactService contactService;
         @Mock
-        LocalizationService localizationService;
-
+        private LocalizationService localizationService;
         @InjectMocks
-        OfferService offerService;
+        private OfferService offerService;
 
         @Test
         public void testInsertOffer() {
@@ -41,9 +41,9 @@ public class OfferServiceTests {
                                    .localization(Localization.builder().id(1L).country("country 1").region("region 1")
                                                              .zipCode("44-333").localizationName("Local name").build())
                                    .build();
-                when(offerService.insertOffer(offer)).thenReturn(offer);
+                when(offerService.addOfferOrUpdateIfExists(offer)).thenReturn(offer);
 
-                Offer offerOptional = offerService.insertOffer(offer);
+                Offer offerOptional = offerService.addOfferOrUpdateIfExists(offer);
 
                 assertThat(1L, equalTo(offerOptional.getId()));
         }
@@ -57,14 +57,12 @@ public class OfferServiceTests {
                                                         .zipCode("44-333")
                                                         .localizationName("Local name")
                                                         .build();
-
                 Contact contact = Contact.builder()
                                          .id(1L)
                                          .name("contact 1")
                                          .email("contact1@mail")
                                          .phoneNumber(4566)
                                          .build();
-
                 Offer offer = Offer.builder()
                                    .id(1L)
                                    .title("Title1")
@@ -73,9 +71,12 @@ public class OfferServiceTests {
                                    .contact(contact)
                                    .localization(localization)
                                    .build();
-                Offer offer2 = Offer.builder().id(2L).title("Title2").content("Content2").isActive(Boolean.TRUE)
-                                    .contact(
-                                            contact)
+                Offer offer2 = Offer.builder()
+                                    .id(2L)
+                                    .title("Title2")
+                                    .content("Content2")
+                                    .isActive(Boolean.TRUE)
+                                    .contact(contact)
                                     .localization(localization)
                                     .build();
                 when(offerService.findOffersByIsActive(Boolean.TRUE)).thenReturn(Arrays.asList(offer, offer2));
@@ -109,7 +110,7 @@ public class OfferServiceTests {
                                    .contact(contact)
                                    .localization(localization)
                                    .build();
-                when(offerService.findAllOffers()).thenReturn(Arrays.asList(offer));
+                when(offerService.findAllOffers()).thenReturn(Collections.singletonList(offer));
 
                 List<Offer> allActiveOffers = offerService.findAllOffers();
 
