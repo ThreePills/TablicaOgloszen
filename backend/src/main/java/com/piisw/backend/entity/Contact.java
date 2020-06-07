@@ -1,6 +1,7 @@
 package com.piisw.backend.entity;
 
 import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,19 +21,18 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode
 public class Contact implements Serializable {
 
-        @Id
-        @SequenceGenerator (name = "CONTACT_ID_GENERATOR", sequenceName = "CONTACT_SEQ", allocationSize = 1)
-        @GeneratedValue (strategy = GenerationType.SEQUENCE, generator = "CONTACT_ID_GENERATOR")
-        @EqualsAndHashCode.Exclude
-        private Long id;
+  @Id
+  @SequenceGenerator(
+      name = "CONTACT_ID_GENERATOR",
+      sequenceName = "CONTACT_SEQ",
+      allocationSize = 1)
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CONTACT_ID_GENERATOR")
+  @EqualsAndHashCode.Exclude
+  private Long id;
 
-        @NotNull
-        private String name;
+  @NotNull private String name;
 
-        @NotNull
-        private String email;
+  @NotNull private String email;
 
-        @NotNull
-        private Integer phoneNumber;
-
+  @NotNull private Integer phoneNumber;
 }
