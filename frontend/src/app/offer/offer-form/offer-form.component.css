@@ -1,0 +1,40 @@
+h1 {
+  background-color: var(--background-color-header);
+  border-radius: 0.5em;
+  color: var(--white-color);
+  font-weight: bold;
+  font-size: 2em;
+  padding: 0.4em;
+  margin: 1em;
+  width: 25%;
+}
+
+form {
+  margin: 1em;
+}
+
+.form-section {
+  margin: 1em 1em 1rem;
+}
+
+.form-section-title {
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.alert {
+  border-radius: 0.5em;
+}
+
+label {
+  font-weight: bold;
+}
+
+input {
+  border-radius: 0.5em;
+}
+
+button {
+  margin: 1em;
+}

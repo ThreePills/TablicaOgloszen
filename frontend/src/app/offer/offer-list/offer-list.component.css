@@ -1,0 +1,109 @@
+.offer-section {
+  width: 97%;
+  height: 100%;
+  margin: 2em;
+  display: flex;
+  flex-direction: row;
+}
+
+.offer-list{
+  width: 83%;
+}
+
+.options{
+  margin-top: var(--side-margin);
+  padding: var(--side-padding);
+  border: 0.2em solid var(--background-color-header);
+  border-radius: 1em;
+  background-color: var(--background-offer);
+  display: flex;
+  flex-direction: column;
+  justify-self: flex-end;
+}
+
+.form-inline{
+  margin-top: var(--side-margin);
+  align-self: flex-end;
+}
+
+.form-control{
+  border: none;
+  border-bottom: 1px solid var(--background-color-header);
+  background-color: var(--background-offer);
+}
+
+.active-cyan-2 input.form-control[type=text]:focus:not([readonly]) {
+  border-bottom: 1px solid var(--background-color-header);
+  box-shadow: 0 1px 0 0 var(--background-color-header);
+}
+
+.active-cyan input[type=text] {
+  background-color: var(--background-color);
+  border-bottom: 1px solid var(--background-color-header);
+  box-shadow: 0 1px 0 0 var(--background-color-header);
+}
+
+.search-icon{
+  margin-top: var(--side-margin);
+}
+
+.button-group{
+  align-self: flex-end;
+  margin-top: var(--side-margin);
+}
+
+.button-group nz-radio-group{
+  margin-right: 0.8em;
+}
+
+.button-success{
+  align-self: center;
+  width: 90%;
+  color: #fff;
+  background-color: var(--background-color-header);
+  border-color: var(--background-color-header);
+}
+
+.button-success:hover{
+  background-color: var(--background-color-button-hover);
+}
+
+.label-column:active{
+  background: var(--background-color-header) !important;
+  border-color: var(--background-color-header) !important;
+}
+
+.label-column:hover{
+  border-color: var(--background-color-header) ;
+}
+
+.ant-radio-group-solid .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled){
+  background: var(--background-color-header) !important;
+  border-color: var(--background-color-header) !important;
+}
+
+.ant-radio-group-solid .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):hover{
+  color: var(--white-color) !important;
+}
+
+.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled)::before {
+  background: var(--background-color-header) !important;
+  border-color: var(--background-color-header) !important;
+}
+
+.mat-list-base .mat-list-item, .mat-list-base .mat-list-option{
+  height: auto;
+}
+
+.city{
+  margin-top: 7px;
+}
+
+.no-offers{
+  margin-top: 5%;
+}
+
+.no-offers span{
+  font-style: italic;
+}
+

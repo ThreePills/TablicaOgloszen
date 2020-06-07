@@ -20,10 +20,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping (value = "/offer")
+@RequestMapping(value = "/offer")
 public class OfferController {
-
-        private final OfferService offerService;
+  
+     private final OfferService offerService;
 
         @PostMapping
         @ResponseBody

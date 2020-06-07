@@ -1,0 +1,94 @@
+@import "../../../../variables.css";
+
+.offer-panel{
+  display: flex;
+  flex-direction: column;
+  border: 0.2em solid var(--background-color-header);
+  border-radius: 1em;
+  background-color: var(--background-offer);
+  margin: 1em;
+}
+
+.offer-header{
+  display: flex;
+  justify-content: flex-end;
+  align-items: baseline;
+  margin: 0 var(--side-margin);
+}
+
+.offer-left-header{
+  width: 100%;
+  align-self: center;
+  margin-top: 0.5em;
+}
+
+.offer-title{
+  margin: 0;
+  font-size: var(--font-size-heading);
+  font-style: italic;
+}
+
+.offer-localization{
+  margin: 0;
+  font-style: italic;
+  font-size: var(--font-size-localization);
+}
+
+
+.offer-phoneNumber{
+  align-self: center;
+  justify-self: center;
+  margin-left: var(--side-margin);
+}
+
+.offer-email{
+  align-self: center;
+  justify-self: center;
+}
+
+.phone-icon{
+  font-weight: bold;
+  color: var(--warning-color);
+  font-size: var(--font-size-heading);
+}
+
+.email-icon{
+  font-weight: bold;
+  color: var(--email-color);
+  font-size: var(--font-size-heading);
+}
+
+.offer-menu{
+  align-self: center;
+  justify-self: center;
+  margin-left: 0.4em;
+}
+
+.button-menu{
+  border: none;
+}
+
+.ant-dropdown-menu-item:hover,
+.ant-dropdown-menu-submenu-title:hover {
+  background-color: var(--background-color-header);
+  color: var(--white-color);
+}
+
+.button-menu:hover,
+.button-menu:focus{
+  color: var(--background-color-header);
+}
+
+.offer-content{
+  height: 100%;
+  margin: var(--side-margin);
+  text-align: justify;
+  word-wrap: break-word;
+}
+
+.offer-author{
+  align-self: flex-end;
+  font-style: italic;
+  font-size: var(--font-size-signature);
+  margin-right: var(--side-margin);
+}
