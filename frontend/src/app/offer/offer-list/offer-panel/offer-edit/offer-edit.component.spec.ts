@@ -1,28 +1,28 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { OfferEditComponent } from './offer-edit.component';
-import {NzModalService, NzModalRef, NzModalModule} from "ng-zorro-antd";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { NzModalService, NzModalRef, NzModalModule } from 'ng-zorro-antd';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-let contact = {
-  email: "email@example.com",
+const contact = {
+  email: 'email@example.com',
   phoneNumber: 111111111,
-  name: "Name"
-}
+  name: 'Name',
+};
 
-let localization = {
-  country: "Country",
-  region: "Region",
-  zipCode: "zipCode",
-  localizationName: "localizationName"
-}
+const localization = {
+  country: 'Country',
+  region: 'Region',
+  zipCode: 'zipCode',
+  localizationName: 'localizationName',
+};
 
-let offer = {
-  contact: contact,
-  localization: localization,
-  title: "Title",
-  content: "Content"
-}
+const offer = {
+  contact,
+  localization,
+  title: 'Title',
+  content: 'Content',
+};
 
 describe('OfferEditComponent', () => {
   let component: OfferEditComponent;
@@ -30,21 +30,20 @@ describe('OfferEditComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OfferEditComponent ],
-      imports: [ NzModalModule, BrowserAnimationsModule ],
+      declarations: [OfferEditComponent],
+      imports: [NzModalModule, BrowserAnimationsModule],
       providers: [
         {
           provide: NzModalRef,
-          useFactory: (modalSvc: NzModalService) => modalSvc.create({
-            nzClosable: false,
-            nzContent: OfferEditComponent
-          }),
-          deps: [NzModalService]
-        }
-      ]
-
-    })
-      .compileComponents();
+          useFactory: (modalSvc: NzModalService) =>
+            modalSvc.create({
+              nzClosable: false,
+              nzContent: OfferEditComponent,
+            }),
+          deps: [NzModalService],
+        },
+      ],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

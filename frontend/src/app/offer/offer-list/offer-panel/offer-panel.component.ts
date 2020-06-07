@@ -12,17 +12,16 @@ export class OfferPanelComponent implements OnInit {
   @Input()
   confirmDeleteOffer;
   @Input()
-  editAdvertisement
-  deleted: boolean
+  editAdvertisement;
+  deleted: boolean;
 
   constructor() {}
 
   ngOnInit(): void {
     console.log(this.offer);
   }
-  deleteOffer(){
-    this.confirmDeleteOffer(this.offer.title, this.offer.id)
+  deleteOffer() {
+    this.confirmDeleteOffer(this.offer.title, this.offer.id);
     this.deleted = true;
   }
-
 }
