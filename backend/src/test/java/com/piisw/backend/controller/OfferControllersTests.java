@@ -95,7 +95,8 @@ public class OfferControllersTests {
         public void testGetAllActiveWithStatusOk() throws Exception {
                 List<Offer> offerList = new ArrayList<Offer>();
 
-                Contact contact = Contact.builder().id(1L).name("contact 1").email("contact1@mail").phoneNumber(4566)
+                Contact contact = Contact.builder().id(1L).name("contact 1").email("contact1@mail.com")
+                                         .phoneNumber(4566)
                                          .build();
                 Localization localization = Localization.builder().id(1L).country("country 1").region("region 1")
                                                         .zipCode("44-333").localizationName("Local name").build();
@@ -110,7 +111,7 @@ public class OfferControllersTests {
 
                 offerList.remove(1);
                 given(this.offerService.findOffersByIsActive(Boolean.TRUE)).willReturn(offerList);
-                mockMvc.perform(get("/offer/true"))
+                mockMvc.perform(get("/offer/list/true"))
                        .andExpect(status().isOk())
                        .andExpect(jsonPath("$.length()").value(1))
                        .andExpect(jsonPath("$.[0].id").value(1))
@@ -159,21 +160,22 @@ public class OfferControllersTests {
         @Test
         public void testPutOfferWithStatusOk() throws Exception {
 
-                Contact contact = Contact.builder().id(1L).name("contact 1").email("contact1@mail").phoneNumber(4566)
+                Contact contact = Contact.builder().id(1L).name("Contact 1").email("contact1@mail.com")
+                                         .phoneNumber(4566)
                                          .build();
-                Localization localization = Localization.builder().id(1L).country("country 1").region("region 1")
+                Localization localization = Localization.builder().id(1L).country("Country 1").region("Region 1")
                                                         .zipCode("44-333").localizationName("Local name").build();
                 Offer offer = Offer.builder().id(1L).localization(localization).isActive(Boolean.TRUE)
                                    .title("Offer title 1").content("Offer 1 content").contact(contact).build();
 
-                offer.setTitle("new title");
+                offer.setTitle("New title");
                 given(this.offerService.addOfferOrUpdateIfExists(offer)).willReturn(offer);
 
                 this.mockMvc.perform(post("/offer").content(mapper.writeValueAsString(offer))
                                                    .contentType(MediaType.APPLICATION_JSON_VALUE))
                             .andExpect(status().isOk())
                             .andExpect(jsonPath("$.id").value(1))
-                            .andExpect(jsonPath("$.title").value("new title"));
+                            .andExpect(jsonPath("$.title").value("New title"));
         }
 
         @Test

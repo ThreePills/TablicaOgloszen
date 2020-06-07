@@ -16,6 +16,5 @@ public class LocalizationService {
         Localization updateLocalizationInOffer(Localization offerLocalization) {
                 return localizationRepository.findByHashValueEquals(offerLocalization.hashCode())
                                              .orElseGet(() -> localizationRepository.save(offerLocalization));
-
         }
 }

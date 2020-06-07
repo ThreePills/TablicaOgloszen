@@ -1,6 +1,9 @@
 package com.piisw.backend.controller;
 
 import java.util.List;
+import java.util.Optional;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import com.piisw.backend.entity.Offer;
 import com.piisw.backend.service.OfferService;
@@ -24,7 +27,7 @@ public class OfferController {
 
         @PostMapping
         @ResponseBody
-        public ResponseEntity<Offer> addOfferWithDetailsOrUpdateIfExists(@RequestBody Offer offer) {
+        public ResponseEntity<Offer> addOfferWithDetailsOrUpdateIfExists(@Valid @RequestBody Offer offer) {
                 return ResponseEntity.ok(offerService.addOfferOrUpdateIfExists(offer));
         }
 
@@ -34,15 +37,22 @@ public class OfferController {
                 return ResponseEntity.ok(offerService.findAllOffers());
         }
 
-        @GetMapping (value = "/{isActive}")
+        @GetMapping (value = "/list/{isActive}")
         @ResponseBody
-        public ResponseEntity<List<Offer>> getOffersByIsActive(@PathVariable Boolean isActive) {
+        public ResponseEntity<List<Offer>> getOffersByIsActive(@PathVariable @NotNull Boolean isActive) {
                 return ResponseEntity.ok(offerService.findOffersByIsActive(isActive));
         }
 
         @DeleteMapping ("/{id}")
         @ResponseBody
-        public void deactivateOffer(@PathVariable Long id) {
-                offerService.deactivateOffer(id);
+        public ResponseEntity<Offer> deactivateOffer(@PathVariable @NotNull Long id) {
+                return ResponseEntity.ok(offerService.deactivateOffer(id));
         }
+
+        @GetMapping ("/{id}")
+        @ResponseBody
+        public ResponseEntity<Optional<Offer>> geetOfferById(@PathVariable @NotNull Long id) {
+                return ResponseEntity.ok(offerService.findOfferById(id));
+        }
+
 }

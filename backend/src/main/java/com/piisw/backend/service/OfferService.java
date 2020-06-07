@@ -1,6 +1,7 @@
 package com.piisw.backend.service;
 
 import java.util.List;
+import java.util.Optional;
 import javax.transaction.Transactional;
 
 import com.piisw.backend.entity.Offer;
@@ -25,22 +26,24 @@ public class OfferService {
                 return offerRepository.findAllByIsActive(isActive);
         }
 
+        public Optional<Offer> findOfferById(Long id) {
+                return offerRepository.findById(id);
+        }
+
         public Offer addOfferOrUpdateIfExists(Offer offer) {
                 offer.setContact(contactService.saveNewContactIfDoesntExists(offer.getContact()));
                 offer.setLocalization(
                         localizationService.updateLocalizationInOffer(offer.getLocalization()));
 
                 if (offer.getId() != null && offerRepository.findById(offer.getId()).isPresent()) {
-                        return updateOfferDetails(offerRepository.getOne(offer.getId()), offer);
+                        return updateOfferDetails(offer);
                 } else {
                         return offerRepository.save(offer);
                 }
-
         }
 
-        private Offer updateOfferDetails(Offer offerCopy,
-                                         Offer offer) {
-
+        private Offer updateOfferDetails(Offer offer) {
+                Offer offerCopy = offerRepository.getOne(offer.getId());
                 offerCopy.setTitle(offer.getTitle());
                 offerCopy.setLocalization(offer.getLocalization());
                 offerCopy.setContent(offer.getContent());
@@ -49,9 +52,10 @@ public class OfferService {
                 return offerRepository.save(offerCopy);
         }
 
-        public void deactivateOffer(Long offerId) {
-                offerRepository.deactivateOffer(offerId);
-
+        public Offer deactivateOffer(Long offerId) {
+                Offer offer = offerRepository.getOne(offerId);
+                offer.setActive(Boolean.FALSE);
+                return offerRepository.save(offer);
         }
-        
+
 }

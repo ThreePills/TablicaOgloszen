@@ -25,18 +25,18 @@ public class LocalizationServiceTests {
         @Test
         public void testUpdateLocalization() {
                 Localization localization = Localization.builder()
-                                                        .country("country test")
-                                                        .region("region test")
-                                                        .localizationName("localization")
+                                                        .country("Country test")
+                                                        .region("Region test")
+                                                        .localizationName("Localization")
                                                         .zipCode("58-333")
                                                         .build();
 
                 Localization localizationUpdated = localizationService.updateLocalizationInOffer(localization);
 
-                assertThat("country test", equalTo(localizationUpdated.getCountry()));
-                assertThat("region test", equalTo(localizationUpdated.getRegion()));
+                assertThat("Country test", equalTo(localizationUpdated.getCountry()));
+                assertThat("Region test", equalTo(localizationUpdated.getRegion()));
                 assertThat("58-333", equalTo(localizationUpdated.getZipCode()));
-                assertThat("localization", equalTo(localizationUpdated.getLocalizationName()));
+                assertThat("Localization", equalTo(localizationUpdated.getLocalizationName()));
                 assertThat(10L, equalTo(localizationUpdated.getId()));
         }
 
