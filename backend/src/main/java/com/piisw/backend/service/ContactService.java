@@ -1,6 +1,5 @@
 package com.piisw.backend.service;
 
-import java.util.Optional;
 import javax.transaction.Transactional;
 
 import com.piisw.backend.entity.Contact;
@@ -18,9 +17,5 @@ public class ContactService {
         Contact saveNewContactIfDoesntExists(Contact offerContact) {
                 return contactRepository.findByHashValueEquals(offerContact.hashCode())
                                         .orElseGet(() -> contactRepository.save(offerContact));
-        }
-
-        Optional<Contact> findById(Long id) {
-                return contactRepository.findById(id);
         }
 }

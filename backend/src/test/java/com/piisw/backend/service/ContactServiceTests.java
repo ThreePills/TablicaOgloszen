@@ -1,11 +1,7 @@
 package com.piisw.backend.service;
 
 import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertThat;
-
-import java.util.Optional;
 
 import com.piisw.backend.entity.Contact;
 import org.junit.Test;
@@ -13,11 +9,13 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @SpringBootTest
 @RunWith (SpringJUnit4ClassRunner.class)
 @AutoConfigureTestDatabase
+@DirtiesContext (classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 public class ContactServiceTests {
 
         @Autowired
@@ -32,6 +30,7 @@ public class ContactServiceTests {
                 assertThat(contact.getName(), equalTo(contactUpdated.getName()));
                 assertThat(contact.getEmail(), equalTo(contactUpdated.getEmail()));
                 assertThat(contact.getPhoneNumber(), equalTo(contactUpdated.getPhoneNumber()));
+                assertThat(99598723, equalTo(contactUpdated.hashCode()));
                 assertThat(2L, equalTo(contactUpdated.getId()));
         }
 
@@ -45,14 +44,6 @@ public class ContactServiceTests {
                 assertThat(contact.getEmail(), equalTo(contactUpdated.getEmail()));
                 assertThat(contact.getPhoneNumber(), equalTo(contactUpdated.getPhoneNumber()));
                 assertThat(10L, equalTo(contactUpdated.getId()));
-        }
-
-        @Test
-        public void testFindByIdContactSuccessful() {
-                Optional<Contact> contactOptional = contactService.findById(1L);
-
-                assertThat(contactOptional.get(), is(notNullValue()));
-
         }
 
 }
