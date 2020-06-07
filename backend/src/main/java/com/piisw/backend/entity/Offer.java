@@ -1,6 +1,7 @@
 package com.piisw.backend.entity;
 
 import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -24,26 +25,22 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode
 public class Offer implements Serializable {
 
-        @Id
-        @SequenceGenerator (name = "OFFER_ID_GENERATOR", sequenceName = "OFFER_SEQ", allocationSize = 1)
-        @GeneratedValue (strategy = GenerationType.SEQUENCE, generator = "OFFER_ID_GENERATOR")
-        private Long id;
+  @Id
+  @SequenceGenerator(name = "OFFER_ID_GENERATOR", sequenceName = "OFFER_SEQ", allocationSize = 1)
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "OFFER_ID_GENERATOR")
+  private Long id;
 
-        @NotNull
-        private String title;
+  @NotNull private String title;
 
-        @NotNull
-        private String content;
+  @NotNull private String content;
 
-        @NotNull
-        private boolean isActive = true;
+  @NotNull private boolean isActive = true;
 
-        @ManyToOne (fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-        @JoinColumn (name = "CONTACT_ID", nullable = false)
-        private Contact contact;
+  @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+  @JoinColumn(name = "CONTACT_ID", nullable = false)
+  private Contact contact;
 
-        @ManyToOne (fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-        @JoinColumn (name = "LOCALIZATION_ID", nullable = false)
-        private Localization localization;
-
+  @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+  @JoinColumn(name = "LOCALIZATION_ID", nullable = false)
+  private Localization localization;
 }
