@@ -12,10 +12,11 @@ import org.springframework.stereotype.Service;
 @Transactional
 public class ContactService {
 
-        private final ContactRepository contactRepository;
+  private final ContactRepository contactRepository;
 
-        Contact saveNewContactIfDoesntExists(Contact offerContact) {
-                return contactRepository.findByHashValueEquals(offerContact.hashCode())
-                                        .orElseGet(() -> contactRepository.save(offerContact));
-        }
+  Contact saveNewContactIfDoesntExists(Contact offerContact) {
+    return contactRepository
+        .findByHashValueEquals(offerContact.hashCode())
+        .orElseGet(() -> contactRepository.save(offerContact));
+  }
 }

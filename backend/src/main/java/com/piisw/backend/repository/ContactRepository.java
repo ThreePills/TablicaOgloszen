@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ContactRepository extends JpaRepository<Contact, Long> {
-        Optional<Contact> findByHashValueEquals(int hashValue);
+  Optional<Contact> findByHashValueEquals(int hashValue);
 }

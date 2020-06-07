@@ -22,37 +22,37 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 @RequestMapping(value = "/offer")
 public class OfferController {
-  
-     private final OfferService offerService;
 
-        @PostMapping
-        @ResponseBody
-        public ResponseEntity<Offer> addOfferWithDetailsOrUpdateIfExists(@Valid @RequestBody Offer offer) {
-                return ResponseEntity.ok(offerService.addOfferOrUpdateIfExists(offer));
-        }
+  private final OfferService offerService;
 
-        @GetMapping (value = "/all")
-        @ResponseBody
-        public ResponseEntity<List<Offer>> getOffers() {
-                return ResponseEntity.ok(offerService.findAllOffers());
-        }
+  @PostMapping
+  @ResponseBody
+  public ResponseEntity<Offer> addOfferWithDetailsOrUpdateIfExists(
+      @Valid @RequestBody Offer offer) {
+    return ResponseEntity.ok(offerService.addOfferOrUpdateIfExists(offer));
+  }
 
-        @GetMapping (value = "/list/{isActive}")
-        @ResponseBody
-        public ResponseEntity<List<Offer>> getOffersByIsActive(@PathVariable @NotNull Boolean isActive) {
-                return ResponseEntity.ok(offerService.findOffersByIsActive(isActive));
-        }
+  @GetMapping(value = "/all")
+  @ResponseBody
+  public ResponseEntity<List<Offer>> getOffers() {
+    return ResponseEntity.ok(offerService.findAllOffers());
+  }
 
-        @DeleteMapping ("/{id}")
-        @ResponseBody
-        public ResponseEntity<Offer> deactivateOffer(@PathVariable @NotNull Long id) {
-                return ResponseEntity.ok(offerService.deactivateOffer(id));
-        }
+  @GetMapping(value = "/list/{isActive}")
+  @ResponseBody
+  public ResponseEntity<List<Offer>> getOffersByIsActive(@PathVariable @NotNull Boolean isActive) {
+    return ResponseEntity.ok(offerService.findOffersByIsActive(isActive));
+  }
 
-        @GetMapping ("/{id}")
-        @ResponseBody
-        public ResponseEntity<Optional<Offer>> geetOfferById(@PathVariable @NotNull Long id) {
-                return ResponseEntity.ok(offerService.findOfferById(id));
-        }
+  @DeleteMapping("/{id}")
+  @ResponseBody
+  public ResponseEntity<Offer> deactivateOffer(@PathVariable @NotNull Long id) {
+    return ResponseEntity.ok(offerService.deactivateOffer(id));
+  }
 
+  @GetMapping("/{id}")
+  @ResponseBody
+  public ResponseEntity<Optional<Offer>> geetOfferById(@PathVariable @NotNull Long id) {
+    return ResponseEntity.ok(offerService.findOfferById(id));
+  }
 }

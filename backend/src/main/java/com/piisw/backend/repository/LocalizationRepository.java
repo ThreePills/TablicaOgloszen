@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LocalizationRepository extends JpaRepository<Localization, Long> {
-        Optional<Localization> findByHashValueEquals(int hashValue);
+  Optional<Localization> findByHashValueEquals(int hashValue);
 }

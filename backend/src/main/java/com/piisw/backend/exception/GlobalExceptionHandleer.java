@@ -14,29 +14,31 @@ import org.springframework.web.client.HttpStatusCodeException;
 @RestControllerAdvice
 public class GlobalExceptionHandleer {
 
-        @ExceptionHandler (MethodArgumentNotValidException.class)
-        public Map<String, String> handleValidationExceptions(
-                MethodArgumentNotValidException ex) {
-                Map<String, String> errors = new HashMap<>();
-                ex.getBindingResult().getAllErrors().forEach(error -> {
-                        String fieldName = ((FieldError) error).getField();
-                        String errorMessage = error.getDefaultMessage();
-                        errors.put(fieldName, errorMessage);
-                });
-                return errors;
-        }
+  @ExceptionHandler(MethodArgumentNotValidException.class)
+  public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {
+    Map<String, String> errors = new HashMap<>();
+    ex.getBindingResult()
+        .getAllErrors()
+        .forEach(
+            error -> {
+              String fieldName = ((FieldError) error).getField();
+              String errorMessage = error.getDefaultMessage();
+              errors.put(fieldName, errorMessage);
+            });
+    return errors;
+  }
 
-        @ExceptionHandler ({HttpStatusCodeException.class})
-        public final ResponseEntity<String> handleStatusCodeException(HttpStatusCodeException ex) {
-                return new ResponseEntity<>(ex.getResponseBodyAsString(), ex.getResponseHeaders(), ex.getStatusCode());
-        }
+  @ExceptionHandler({HttpStatusCodeException.class})
+  public final ResponseEntity<String> handleStatusCodeException(HttpStatusCodeException ex) {
+    return new ResponseEntity<>(
+        ex.getResponseBodyAsString(), ex.getResponseHeaders(), ex.getStatusCode());
+  }
 
-        @ExceptionHandler ({Exception.class})
-        public final ResponseEntity<String> handleUnknownException(Exception ex) {
-                return new ResponseEntity<>(
-                        "Error has occured. Possible error causes: Fields of Object in request not validated" + ex
-                                .getMessage(),
-                        HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-
+  @ExceptionHandler({Exception.class})
+  public final ResponseEntity<String> handleUnknownException(Exception ex) {
+    return new ResponseEntity<>(
+        "Error has occured. Possible error causes: Fields of Object in request not validated"
+            + ex.getMessage(),
+        HttpStatus.INTERNAL_SERVER_ERROR);
+  }
 }

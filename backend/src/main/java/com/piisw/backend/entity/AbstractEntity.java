@@ -24,41 +24,34 @@ import org.springframework.data.annotation.LastModifiedDate;
 @SuperBuilder
 @Data
 public abstract class AbstractEntity implements Serializable {
-        @Id
-        @SequenceGenerator (name = "ID_GENERATOR", sequenceName = "ID_SEQ", allocationSize = 1)
-        @GeneratedValue (strategy = GenerationType.SEQUENCE, generator = "ID_GENERATOR")
-        @EqualsAndHashCode.Exclude
-        private Long id;
+  @Id
+  @SequenceGenerator(name = "ID_GENERATOR", sequenceName = "ID_SEQ", allocationSize = 1)
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_GENERATOR")
+  @EqualsAndHashCode.Exclude
+  private Long id;
 
-        @CreatedDate
-        @EqualsAndHashCode.Exclude
-        private Instant createdDate;
+  @CreatedDate @EqualsAndHashCode.Exclude private Instant createdDate;
 
-        @LastModifiedDate
-        @EqualsAndHashCode.Exclude
-        private Instant modifiedDate;
+  @LastModifiedDate @EqualsAndHashCode.Exclude private Instant modifiedDate;
 
-        @Version
-        @EqualsAndHashCode.Exclude
-        private Long version;
+  @Version @EqualsAndHashCode.Exclude private Long version;
 
-        @EqualsAndHashCode.Exclude
-        private int hashValue;
+  @EqualsAndHashCode.Exclude private int hashValue;
 
-        @PrePersist
-        protected void onCreation() {
-                createdDate = Instant.now();
-                modifiedDate = createdDate;
-                hashValue = this.hashCode();
-        }
+  @PrePersist
+  protected void onCreation() {
+    createdDate = Instant.now();
+    modifiedDate = createdDate;
+    hashValue = this.hashCode();
+  }
 
-        @PreUpdate
-        protected void onUpdate() {
-                modifiedDate = Instant.now();
-        }
+  @PreUpdate
+  protected void onUpdate() {
+    modifiedDate = Instant.now();
+  }
 
-        @PostUpdate
-        protected void postUpdate() {
-                hashValue = this.hashCode();
-        }
+  @PostUpdate
+  protected void postUpdate() {
+    hashValue = this.hashCode();
+  }
 }
