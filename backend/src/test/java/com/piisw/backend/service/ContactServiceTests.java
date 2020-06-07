@@ -27,7 +27,7 @@ public class ContactServiceTests {
         public void testUpdateContactShouldReturnExistingContact() {
                 Contact contact = Contact.builder().email("test2@mail.com").name("Test2").phoneNumber(1234).build();
 
-                Contact contactUpdated = contactService.upadateContactInOffer(contact);
+                Contact contactUpdated = contactService.saveNewContactIfDoesntExists(contact);
 
                 assertThat(contact.getName(), equalTo(contactUpdated.getName()));
                 assertThat(contact.getEmail(), equalTo(contactUpdated.getEmail()));
@@ -39,12 +39,12 @@ public class ContactServiceTests {
         public void testUpdateContactShouldReturnNewContact() {
                 Contact contact = Contact.builder().email("test4@mail.com").name("Test4").phoneNumber(4321).build();
 
-                Contact contactUpdated = contactService.upadateContactInOffer(contact);
+                Contact contactUpdated = contactService.saveNewContactIfDoesntExists(contact);
 
                 assertThat(contact.getName(), equalTo(contactUpdated.getName()));
                 assertThat(contact.getEmail(), equalTo(contactUpdated.getEmail()));
                 assertThat(contact.getPhoneNumber(), equalTo(contactUpdated.getPhoneNumber()));
-                assertThat(4L, equalTo(contactUpdated.getId()));
+                assertThat(10L, equalTo(contactUpdated.getId()));
         }
 
         @Test

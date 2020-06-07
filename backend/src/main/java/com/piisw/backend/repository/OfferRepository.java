@@ -13,8 +13,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface OfferRepository extends JpaRepository<Offer, Long> {
 
-        List<Offer> findAll();
-
         List<Offer> findAllByIsActive(Boolean isActive);
 
         @Modifying

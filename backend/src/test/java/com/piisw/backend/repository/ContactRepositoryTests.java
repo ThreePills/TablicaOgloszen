@@ -39,7 +39,7 @@ public class ContactRepositoryTests {
 
         @Test
         public void testDetailsOFContact() {
-                Contact contact = contactRepository.getOne(3L);
+                Contact contact = contactRepository.findById(3L).get();
 
                 assertThat(3L, equalTo(contact.getId()));
                 assertThat("Test3", equalTo(contact.getName()));

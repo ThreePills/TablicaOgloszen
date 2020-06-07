@@ -39,7 +39,7 @@ public class LocalizationRepositoryTests {
 
         @Test
         public void testDetailsOFLocalization() {
-                Localization localization = localizationRepository.getOne(3L);
+                Localization localization = localizationRepository.findById(3L).get();
 
                 assertThat(3L, equalTo(localization.getId()));
                 assertThat("country3", equalTo(localization.getCountry()));

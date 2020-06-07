@@ -1,7 +1,6 @@
 package com.piisw.backend.service;
 
 import java.util.List;
-import java.util.Optional;
 import javax.transaction.Transactional;
 
 import com.piisw.backend.entity.Offer;
@@ -27,17 +26,15 @@ public class OfferService {
         }
 
         public Offer addOfferOrUpdateIfExists(Offer offer) {
-                Optional<Offer> offerOptional = Optional.empty();
-
-                offer.setContact(contactService.upadateContactInOffer(offer.getContact()));
+                offer.setContact(contactService.saveNewContactIfDoesntExists(offer.getContact()));
                 offer.setLocalization(
                         localizationService.updateLocalizationInOffer(offer.getLocalization()));
 
-                if (offer.getId() != null) {
-                        offerOptional = offerRepository
-                                .findById(offer.getId());
+                if (offer.getId() != null && offerRepository.findById(offer.getId()).isPresent()) {
+                        return updateOfferDetails(offerRepository.getOne(offer.getId()), offer);
+                } else {
+                        return offerRepository.save(offer);
                 }
-                return offerOptional.map(o -> updateOfferDetails(o, offer)).orElse(offerRepository.save(offer));
 
         }
 
