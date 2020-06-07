@@ -21,9 +21,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 @DataJpaTest
 public class OfferRepositoryTests {
 
-  @Autowired ContactRepository contactRepository;
-  @Autowired LocalizationRepository localizationRepository;
-  @Autowired OfferRepository offerRepository;
+  @Autowired private ContactRepository contactRepository;
+  @Autowired private LocalizationRepository localizationRepository;
+  @Autowired private OfferRepository offerRepository;
 
   @Test
   public void testFindOffersByIsActive() {
@@ -39,8 +39,8 @@ public class OfferRepositoryTests {
   @Test
   public void testFindByIdOffer() {
     Optional<Offer> offer = offerRepository.findById(5L);
-    Localization offerLocalization = localizationRepository.getOne(2L);
-    Contact offerContact = contactRepository.getOne(1L);
+    Localization offerLocalization = localizationRepository.findById(2L).get();
+    Contact offerContact = contactRepository.findById(1L).get();
 
     assertEquals(Boolean.TRUE, offer.isPresent());
 

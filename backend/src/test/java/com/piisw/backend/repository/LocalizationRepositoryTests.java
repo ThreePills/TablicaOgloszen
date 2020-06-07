@@ -19,7 +19,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @DataJpaTest
 public class LocalizationRepositoryTests {
 
-  @Autowired LocalizationRepository localizationRepository;
+  @Autowired private LocalizationRepository localizationRepository;
 
   @Test
   public void testFindAllLocalizations() {
@@ -39,7 +39,7 @@ public class LocalizationRepositoryTests {
 
   @Test
   public void testDetailsOFLocalization() {
-    Localization localization = localizationRepository.getOne(3L);
+    Localization localization = localizationRepository.findById(3L).get();
 
     assertThat(3L, equalTo(localization.getId()));
     assertThat("country3", equalTo(localization.getCountry()));

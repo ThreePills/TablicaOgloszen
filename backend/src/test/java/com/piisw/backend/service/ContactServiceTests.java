@@ -2,34 +2,49 @@ package com.piisw.backend.service;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.when;
 
 import com.piisw.backend.entity.Contact;
-import com.piisw.backend.repository.ContactRepository;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-@RunWith(MockitoJUnitRunner.class)
+@SpringBootTest
+@RunWith(SpringJUnit4ClassRunner.class)
+@AutoConfigureTestDatabase
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 public class ContactServiceTests {
 
-  @Mock ContactRepository contactRepository;
-
-  @InjectMocks ContactService contactService;
+  @Autowired private ContactService contactService;
 
   @Test
-  public void testUpdateContact() {
-    Contact contact = new Contact(1L, "Test1", "test1@mail.com", 1234);
-    when(contactService.upadateContactInOffer(contact)).thenReturn(contact);
+  public void testUpdateContactShouldReturnExistingContact() {
+    Contact contact =
+        Contact.builder().email("test2@mail.com").name("Test2").phoneNumber(1234).build();
 
-    Contact contactUpdated = contactService.upadateContactInOffer(contact);
+    Contact contactUpdated = contactService.saveNewContactIfDoesntExists(contact);
 
-    assertThat("Test1", equalTo(contactUpdated.getName()));
-    assertThat("test1@mail.com", equalTo(contactUpdated.getEmail()));
-    assertThat(1234, equalTo(contactUpdated.getPhoneNumber()));
-    assertThat(1L, equalTo(contactUpdated.getId()));
+    assertThat(contact.getName(), equalTo(contactUpdated.getName()));
+    assertThat(contact.getEmail(), equalTo(contactUpdated.getEmail()));
+    assertThat(contact.getPhoneNumber(), equalTo(contactUpdated.getPhoneNumber()));
+    assertThat(99598723, equalTo(contactUpdated.hashCode()));
+    assertThat(2L, equalTo(contactUpdated.getId()));
+  }
+
+  @Test
+  public void testUpdateContactShouldReturnNewContact() {
+    Contact contact =
+        Contact.builder().email("test4@mail.com").name("Test4").phoneNumber(4321).build();
+
+    Contact contactUpdated = contactService.saveNewContactIfDoesntExists(contact);
+
+    assertThat(contact.getName(), equalTo(contactUpdated.getName()));
+    assertThat(contact.getEmail(), equalTo(contactUpdated.getEmail()));
+    assertThat(contact.getPhoneNumber(), equalTo(contactUpdated.getPhoneNumber()));
+    assertThat(10L, equalTo(contactUpdated.getId()));
   }
 }

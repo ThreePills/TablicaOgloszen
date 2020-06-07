@@ -19,7 +19,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @DataJpaTest
 public class ContactRepositoryTests {
 
-  @Autowired ContactRepository contactRepository;
+  @Autowired private ContactRepository contactRepository;
 
   @Test
   public void testfindAllContacts() {
@@ -39,7 +39,7 @@ public class ContactRepositoryTests {
 
   @Test
   public void testDetailsOFContact() {
-    Contact contact = contactRepository.getOne(3L);
+    Contact contact = contactRepository.findById(3L).get();
 
     assertThat(3L, equalTo(contact.getId()));
     assertThat("Test3", equalTo(contact.getName()));

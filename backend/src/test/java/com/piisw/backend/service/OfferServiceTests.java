@@ -10,6 +10,7 @@ import com.piisw.backend.entity.Offer;
 import com.piisw.backend.repository.OfferRepository;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.Test;
@@ -23,46 +24,101 @@ import org.springframework.beans.factory.annotation.Autowired;
 @RunWith(MockitoJUnitRunner.class)
 public class OfferServiceTests {
 
-  @Spy @Autowired OfferRepository offerRepository;
-  @Mock ContactService contactService;
-  @Mock LocalizationService localizationService;
-
-  @InjectMocks OfferService offerService;
+  @Spy @Autowired private OfferRepository offerRepository;
+  @Mock private ContactService contactService;
+  @Mock private LocalizationService localizationService;
+  @InjectMocks private OfferService offerService;
 
   @Test
   public void testInsertOffer() {
-    Contact contact = new Contact(1L, "contact 1", "contact1@mail", 4566);
-    Localization localization =
-        new Localization(1L, "country 1", "region 1", "44-333", "Local name");
-    Offer offer = new Offer(1L, "Title1", "Content1", Boolean.TRUE, contact, localization);
-    when(offerService.insertOffer(offer)).thenReturn(offer);
+    Offer offer =
+        Offer.builder()
+            .id(1L)
+            .title("Title1")
+            .content("Content1")
+            .isActive(Boolean.TRUE)
+            .contact(
+                Contact.builder()
+                    .id(1L)
+                    .name("contact 1")
+                    .email("contact1@mail")
+                    .phoneNumber(4566)
+                    .build())
+            .localization(
+                Localization.builder()
+                    .id(1L)
+                    .country("country 1")
+                    .region("region 1")
+                    .zipCode("44-333")
+                    .localizationName("Local name")
+                    .build())
+            .build();
+    when(offerService.addOfferOrUpdateIfExists(offer)).thenReturn(offer);
 
-    Offer offerOptional = offerService.insertOffer(offer);
+    Offer offerOptional = offerService.addOfferOrUpdateIfExists(offer);
 
     assertThat(1L, equalTo(offerOptional.getId()));
   }
 
   @Test
   public void testFindAllActiveOffers() {
-    Contact contact = new Contact(1L, "contact 1", "contact1@mail", 4566);
     Localization localization =
-        new Localization(1L, "country 1", "region 1", "44-333", "Local name");
-    Offer offer = new Offer(1L, "Title1", "Content1", Boolean.TRUE, contact, localization);
-    Offer offer2 = new Offer(2L, "Title2", "Content2", Boolean.TRUE, contact, localization);
-    when(offerService.findAllActiveOffers()).thenReturn(Arrays.asList(offer, offer2));
+        Localization.builder()
+            .id(1L)
+            .country("country 1")
+            .region("region 1")
+            .zipCode("44-333")
+            .localizationName("Local name")
+            .build();
+    Contact contact =
+        Contact.builder().id(1L).name("contact 1").email("contact1@mail").phoneNumber(4566).build();
+    Offer offer =
+        Offer.builder()
+            .id(1L)
+            .title("Title1")
+            .content("Content1")
+            .isActive(Boolean.TRUE)
+            .contact(contact)
+            .localization(localization)
+            .build();
+    Offer offer2 =
+        Offer.builder()
+            .id(2L)
+            .title("Title2")
+            .content("Content2")
+            .isActive(Boolean.TRUE)
+            .contact(contact)
+            .localization(localization)
+            .build();
+    when(offerService.findOffersByIsActive(Boolean.TRUE)).thenReturn(Arrays.asList(offer, offer2));
 
-    List<Offer> allActiveOffers = offerService.findAllActiveOffers();
+    List<Offer> allActiveOffers = offerService.findOffersByIsActive(Boolean.TRUE);
 
     assertThat(2, equalTo(allActiveOffers.size()));
   }
 
   @Test
   public void testFindAllOffers() {
-    Contact contact = new Contact(1L, "contact 1", "contact1@mail", 4566);
+    Contact contact =
+        Contact.builder().id(1L).name("contact 1").email("contact1@mail").phoneNumber(4566).build();
     Localization localization =
-        new Localization(1L, "country 1", "region 1", "44-333", "Local name");
-    Offer offer = new Offer(1L, "Title1", "Content1", Boolean.TRUE, contact, localization);
-    when(offerService.findAllOffers()).thenReturn(Arrays.asList(offer));
+        Localization.builder()
+            .id(1L)
+            .country("country 1")
+            .region("region 1")
+            .zipCode("44-333")
+            .localizationName("Local name")
+            .build();
+    Offer offer =
+        Offer.builder()
+            .id(1L)
+            .title("Title1")
+            .content("Content1")
+            .isActive(Boolean.TRUE)
+            .contact(contact)
+            .localization(localization)
+            .build();
+    when(offerService.findAllOffers()).thenReturn(Collections.singletonList(offer));
 
     List<Offer> allActiveOffers = offerService.findAllOffers();
 

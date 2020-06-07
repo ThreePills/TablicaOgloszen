@@ -33,7 +33,6 @@ public class OfferControllersTests {
   private OfferService offerService;
   private OfferController offerController;
   private MockMvc mockMvc;
-  private List<Offer> offerList;
   private ObjectMapper mapper;
 
   @Before
@@ -42,26 +41,6 @@ public class OfferControllersTests {
     offerService = Mockito.mock(OfferService.class);
     offerController = new OfferController(offerService);
     mockMvc = MockMvcBuilders.standaloneSetup(offerController).build();
-    offerList = new ArrayList<Offer>();
-    Offer activeOffer = new Offer();
-    Contact contact = new Contact(1L, "contact 1", "contact1@mail", 4566);
-    Localization localization =
-        new Localization(1L, "country 1", "region 1", "44-333", "Local name");
-    activeOffer.setId(1L);
-    activeOffer.setLocalization(localization);
-    activeOffer.setActive(Boolean.TRUE);
-    activeOffer.setTitle("Offer title 1");
-    activeOffer.setContent("Offer 1 content");
-    activeOffer.setContact(contact);
-    offerList.add(activeOffer);
-    Offer inactiveOffer = new Offer();
-    inactiveOffer.setId(2L);
-    inactiveOffer.setContact(contact);
-    inactiveOffer.setContent("Offer 2 content");
-    inactiveOffer.setTitle("Offer 2 title");
-    inactiveOffer.setActive(Boolean.FALSE);
-    inactiveOffer.setLocalization(localization);
-    offerList.add(inactiveOffer);
   }
 
   @After
@@ -73,6 +52,41 @@ public class OfferControllersTests {
 
   @Test
   public void testGetAllWithStatusOk() throws Exception {
+
+    List<Offer> offerList = new ArrayList<Offer>();
+
+    Contact contact =
+        Contact.builder().id(1L).name("contact 1").email("contact1@mail").phoneNumber(4566).build();
+    Localization localization =
+        Localization.builder()
+            .id(1L)
+            .country("country 1")
+            .region("region 1")
+            .zipCode("44-333")
+            .localizationName("Local name")
+            .build();
+    Offer activeOffer =
+        Offer.builder()
+            .id(1L)
+            .localization(localization)
+            .isActive(Boolean.TRUE)
+            .title("Offer title 1")
+            .content("Offer 1 content")
+            .contact(contact)
+            .build();
+
+    Offer inactiveOffer =
+        Offer.builder()
+            .id(2L)
+            .contact(contact)
+            .content("Offer 2 content")
+            .title("Offer 2 title")
+            .isActive(Boolean.FALSE)
+            .localization(localization)
+            .build();
+    offerList.add(activeOffer);
+    offerList.add(inactiveOffer);
+
     given(this.offerService.findAllOffers()).willReturn(offerList);
 
     this.mockMvc
@@ -99,10 +113,49 @@ public class OfferControllersTests {
 
   @Test
   public void testGetAllActiveWithStatusOk() throws Exception {
+    List<Offer> offerList = new ArrayList<Offer>();
+
+    Contact contact =
+        Contact.builder()
+            .id(1L)
+            .name("contact 1")
+            .email("contact1@mail.com")
+            .phoneNumber(4566)
+            .build();
+    Localization localization =
+        Localization.builder()
+            .id(1L)
+            .country("country 1")
+            .region("region 1")
+            .zipCode("44-333")
+            .localizationName("Local name")
+            .build();
+    Offer activeOffer =
+        Offer.builder()
+            .id(1L)
+            .localization(localization)
+            .isActive(Boolean.TRUE)
+            .title("Offer title 1")
+            .content("Offer 1 content")
+            .contact(contact)
+            .build();
+
+    Offer inactiveOffer =
+        Offer.builder()
+            .id(2L)
+            .contact(contact)
+            .content("Offer 2 content")
+            .title("Offer 2 title")
+            .isActive(Boolean.FALSE)
+            .localization(localization)
+            .build();
+    offerList.add(activeOffer);
+    offerList.add(inactiveOffer);
+
     offerList.remove(1);
-    given(this.offerService.findAllActiveOffers()).willReturn(offerList);
+    given(this.offerService.findOffersByIsActive(Boolean.TRUE)).willReturn(offerList);
     mockMvc
-        .perform(get("/offer/allActive"))
+        .perform(get("/offer/list/true"))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.length()").value(1))
         .andExpect(jsonPath("$.[0].id").value(1))
@@ -120,14 +173,27 @@ public class OfferControllersTests {
   }
 
   @Test
-  public void testGetAllActiveWithStatusMethodNotAllowed() throws Exception {
-    final ResultActions resultActions = mockMvc.perform(get("/offer/alActiv"));
-    resultActions.andExpect(status().isMethodNotAllowed());
-  }
-
-  @Test
   public void testPostOfferWithStatusOk() throws Exception {
-    Offer offer = offerList.get(0);
+
+    Contact contact =
+        Contact.builder().id(1L).name("contact 1").email("contact1@mail").phoneNumber(4566).build();
+    Localization localization =
+        Localization.builder()
+            .id(1L)
+            .country("country 1")
+            .region("region 1")
+            .zipCode("44-333")
+            .localizationName("Local name")
+            .build();
+    Offer offer =
+        Offer.builder()
+            .id(1L)
+            .localization(localization)
+            .isActive(Boolean.TRUE)
+            .title("Offer title 1")
+            .content("Offer 1 content")
+            .contact(contact)
+            .build();
 
     this.mockMvc
         .perform(
@@ -154,9 +220,33 @@ public class OfferControllersTests {
   @Test
   public void testPutOfferWithStatusOk() throws Exception {
 
-    Offer offer = offerList.get(0);
-    offer.setTitle("new title");
-    given(this.offerService.insertOffer(offer)).willReturn(offerList.get(0));
+    Contact contact =
+        Contact.builder()
+            .id(1L)
+            .name("Contact 1")
+            .email("contact1@mail.com")
+            .phoneNumber(4566)
+            .build();
+    Localization localization =
+        Localization.builder()
+            .id(1L)
+            .country("Country 1")
+            .region("Region 1")
+            .zipCode("44-333")
+            .localizationName("Local name")
+            .build();
+    Offer offer =
+        Offer.builder()
+            .id(1L)
+            .localization(localization)
+            .isActive(Boolean.TRUE)
+            .title("Offer title 1")
+            .content("Offer 1 content")
+            .contact(contact)
+            .build();
+
+    offer.setTitle("New title");
+    given(this.offerService.addOfferOrUpdateIfExists(offer)).willReturn(offer);
 
     this.mockMvc
         .perform(
@@ -165,7 +255,7 @@ public class OfferControllersTests {
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.id").value(1))
-        .andExpect(jsonPath("$.title").value("new title"));
+        .andExpect(jsonPath("$.title").value("New title"));
   }
 
   @Test
@@ -177,14 +267,51 @@ public class OfferControllersTests {
 
   @Test
   public void testDeleteOfferWithStatusOk() throws Exception {
+    Contact contact =
+        Contact.builder().id(1L).name("contact 1").email("contact1@mail").phoneNumber(4566).build();
+    Localization localization =
+        Localization.builder()
+            .id(1L)
+            .country("country 1")
+            .region("region 1")
+            .zipCode("44-333")
+            .localizationName("Local name")
+            .build();
+    Offer offer =
+        Offer.builder()
+            .id(1L)
+            .localization(localization)
+            .isActive(Boolean.TRUE)
+            .title("Offer title 1")
+            .content("Offer 1 content")
+            .contact(contact)
+            .build();
 
-    this.mockMvc.perform(delete("/offer/" + offerList.get(0).getId())).andExpect(status().isOk());
+    this.mockMvc.perform(delete("/offer/" + offer.getId())).andExpect(status().isOk());
   }
 
   @Test
-  public void testDeleteOfferWithStatusMethodNotAllowed() throws Exception {
-    final ResultActions resultActions = mockMvc.perform(get("/offer/" + offerList.get(0).getId()));
+  public void testFindOfferByIdWithStatusOk() throws Exception {
+    Contact contact =
+        Contact.builder().id(1L).name("contact 1").email("contact1@mail").phoneNumber(4566).build();
+    Localization localization =
+        Localization.builder()
+            .id(1L)
+            .country("country 1")
+            .region("region 1")
+            .zipCode("44-333")
+            .localizationName("Local name")
+            .build();
+    Offer offer =
+        Offer.builder()
+            .id(1L)
+            .localization(localization)
+            .isActive(Boolean.TRUE)
+            .title("Offer title 1")
+            .content("Offer 1 content")
+            .contact(contact)
+            .build();
 
-    resultActions.andExpect(status().isMethodNotAllowed());
+    this.mockMvc.perform(get("/offer/" + offer.getId())).andExpect(status().isOk());
   }
 }

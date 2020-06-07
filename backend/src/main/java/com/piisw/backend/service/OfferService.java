@@ -6,12 +6,15 @@ import com.piisw.backend.repository.OfferRepository;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @Service
+@Transactional
 public class OfferService {
 
   private final OfferRepository offerRepository;
@@ -22,30 +25,27 @@ public class OfferService {
     return offerRepository.findAll();
   }
 
-  public List<Offer> findAllActiveOffers() {
-    return offerRepository.findAllByIsActive(Boolean.TRUE);
+  public List<Offer> findOffersByIsActive(Boolean isActive) {
+    return offerRepository.findAllByIsActive(isActive);
   }
 
-  public Offer insertOffer(Offer offer) {
-    Optional<Offer> offerOptional = Optional.empty();
+  public Optional<Offer> findOfferById(Long id) {
+    return offerRepository.findById(id);
+  }
 
-    offer.setContact(contactService.upadateContactInOffer(offer.getContact()));
+  public Offer addOfferOrUpdateIfExists(Offer offer) {
+    offer.setContact(contactService.saveNewContactIfDoesntExists(offer.getContact()));
     offer.setLocalization(localizationService.updateLocalizationInOffer(offer.getLocalization()));
 
-    if (offer.getId() != null) {
-      offerOptional = offerRepository.findById(offer.getId());
-    }
-
-    if (offerOptional.isPresent()) {
-      return updateOfferDetails(offerOptional.get(), offer);
-
+    if (offer.getId() != null && offerRepository.findById(offer.getId()).isPresent()) {
+      return updateOfferDetails(offer);
     } else {
       return offerRepository.save(offer);
     }
   }
 
-  private Offer updateOfferDetails(Offer offerCopy, Offer offer) {
-
+  private Offer updateOfferDetails(Offer offer) {
+    Offer offerCopy = offerRepository.getOne(offer.getId());
     offerCopy.setTitle(offer.getTitle());
     offerCopy.setLocalization(offer.getLocalization());
     offerCopy.setContent(offer.getContent());
@@ -54,7 +54,9 @@ public class OfferService {
     return offerRepository.save(offerCopy);
   }
 
-  public void removeOffer(Long offerId) {
-    offerRepository.removeOffer(offerId);
+  public Offer deactivateOffer(Long offerId) {
+    Offer offer = offerRepository.getOne(offerId);
+    offer.setActive(Boolean.FALSE);
+    return offerRepository.save(offer);
   }
 }
