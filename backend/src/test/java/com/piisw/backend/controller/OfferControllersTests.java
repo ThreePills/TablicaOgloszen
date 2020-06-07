@@ -287,4 +287,29 @@ public class OfferControllersTests {
 
     this.mockMvc.perform(delete("/offer/" + offer.getId())).andExpect(status().isOk());
   }
+
+  @Test
+  public void testFindOfferByIdWithStatusOk() throws Exception {
+    Contact contact =
+        Contact.builder().id(1L).name("contact 1").email("contact1@mail").phoneNumber(4566).build();
+    Localization localization =
+        Localization.builder()
+            .id(1L)
+            .country("country 1")
+            .region("region 1")
+            .zipCode("44-333")
+            .localizationName("Local name")
+            .build();
+    Offer offer =
+        Offer.builder()
+            .id(1L)
+            .localization(localization)
+            .isActive(Boolean.TRUE)
+            .title("Offer title 1")
+            .content("Offer 1 content")
+            .contact(contact)
+            .build();
+
+    this.mockMvc.perform(get("/offer/" + offer.getId())).andExpect(status().isOk());
+  }
 }
