@@ -55,7 +55,7 @@ public class OfferController {
 
   @GetMapping("/{id}")
   @ResponseBody
-  public ResponseEntity<Optional<Offer>> geetOfferById(@PathVariable @NotNull Long id) {
+  public ResponseEntity<Optional<Offer>> getOfferById(@PathVariable @NotNull Long id) {
     return ResponseEntity.ok(offerService.findOfferById(id));
   }
 }
