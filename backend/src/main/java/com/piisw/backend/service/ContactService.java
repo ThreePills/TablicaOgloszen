@@ -16,9 +16,8 @@ public class ContactService {
         private final ContactRepository contactRepository;
 
         Contact saveNewContactIfDoesntExists(Contact offerContact) {
-                return contactRepository.findAll().stream()
-                                        .filter(contact -> contact.equals(offerContact))
-                                        .findFirst().orElseGet(() -> contactRepository.save(offerContact));
+                return contactRepository.findByHashValueEquals(offerContact.hashCode())
+                                        .orElseGet(() -> contactRepository.save(offerContact));
         }
 
         Optional<Contact> findById(Long id) {

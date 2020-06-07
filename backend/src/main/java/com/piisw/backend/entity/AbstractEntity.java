@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.PostUpdate;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.SequenceGenerator;
@@ -38,16 +39,26 @@ public abstract class AbstractEntity implements Serializable {
         private Instant modifiedDate;
 
         @Version
-        private Long verison;
+        @EqualsAndHashCode.Exclude
+        private Long version;
+
+        @EqualsAndHashCode.Exclude
+        private int hashValue;
 
         @PrePersist
         protected void onCreation() {
                 createdDate = Instant.now();
                 modifiedDate = createdDate;
+                hashValue = this.hashCode();
         }
 
         @PreUpdate
         protected void onUpdate() {
                 modifiedDate = Instant.now();
+        }
+
+        @PostUpdate
+        protected void postUpdate() {
+                hashValue = this.hashCode();
         }
 }

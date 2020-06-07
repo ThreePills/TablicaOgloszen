@@ -14,8 +14,8 @@ public class LocalizationService {
         private final LocalizationRepository localizationRepository;
 
         Localization updateLocalizationInOffer(Localization offerLocalization) {
-                return localizationRepository.findAll().stream()
-                                             .filter(localization -> localization.equals(offerLocalization)).findFirst()
+                return localizationRepository.findByHashValueEquals(offerLocalization.hashCode())
                                              .orElseGet(() -> localizationRepository.save(offerLocalization));
+
         }
 }
