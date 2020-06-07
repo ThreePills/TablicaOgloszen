@@ -1,5 +1,5 @@
-import {Contact} from "./Contact";
-import {Localization} from "./Localization";
+import { Contact } from './Contact';
+import { Localization } from './Localization';
 
 export interface Offer {
   id?: string;

@@ -25,10 +25,16 @@
     "@material/button": "^6.0.0",
     "@ng-bootstrap/ng-bootstrap": "^6.1.0",
     "bootstrap": "^4.4.1",
+    "husky": "^4.2.5",
     "ng-zorro-antd": "^9.1.0",
     "pipe": "^1.1.0",
+    "prettier": "^2.0.5",
+    "pretty-quick": "^2.0.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
+    "tslint-angular": "^3.0.2",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-plugin-prettier": "^2.3.0",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
@@ -51,5 +57,10 @@
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "~3.8.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick -staged && ng lint"
+    }
   }
 }
