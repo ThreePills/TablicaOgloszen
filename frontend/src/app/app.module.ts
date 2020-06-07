@@ -31,7 +31,7 @@ import { FilterlistTitle } from './offer/offer-list/filterListTitle';
 import { MatListModule } from '@angular/material/list';
 import { FilterlistCity } from './offer/offer-list/filterListCity';
 import { OfferEditComponent } from './offer/offer-list/offer-panel/offer-edit/offer-edit.component';
-import {SpinnerLoaderComponent} from "./spinner-loader/spinner-loader.component";
+import { SpinnerLoaderComponent } from './spinner-loader/spinner-loader.component';
 
 registerLocaleData(en);
 
@@ -44,7 +44,7 @@ registerLocaleData(en);
     FilterlistTitle,
     FilterlistCity,
     OfferEditComponent,
-    SpinnerLoaderComponent
+    SpinnerLoaderComponent,
   ],
   imports: [
     BrowserModule,

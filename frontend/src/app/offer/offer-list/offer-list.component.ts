@@ -1,4 +1,4 @@
-import { Component,Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Offer } from '../model/Offer';
 import { ActivatedRoute } from '@angular/router';
 import { OffersRestService } from '../shared/offers-rest.service';
@@ -35,14 +35,14 @@ export class OfferListComponent implements OnInit {
 
   loadOffers() {
     this.loadingOffers = true;
-    this.offersRestService.findAll().subscribe(offers => {
+    this.offersRestService.findAll().subscribe((offers) => {
       this.offers = offers;
       this.loadingOffers = false;
     });
   }
 
   getColumnsNumber(columns: string) {
-    return +columns
+    return +columns;
   }
 
   editAdvertisement = (offer) => {
