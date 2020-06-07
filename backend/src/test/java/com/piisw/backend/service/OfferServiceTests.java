@@ -4,14 +4,15 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.when;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 import com.piisw.backend.entity.Contact;
 import com.piisw.backend.entity.Localization;
 import com.piisw.backend.entity.Offer;
 import com.piisw.backend.repository.OfferRepository;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

@@ -1,6 +1,7 @@
 package com.piisw.backend.entity;
 
 import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;

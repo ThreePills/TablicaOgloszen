@@ -1,11 +1,13 @@
 package com.piisw.backend.service;
 
-import javax.transaction.Transactional;
-
 import com.piisw.backend.entity.Localization;
 import com.piisw.backend.repository.LocalizationRepository;
-import lombok.AllArgsConstructor;
+
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Service;
+
+import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @Service

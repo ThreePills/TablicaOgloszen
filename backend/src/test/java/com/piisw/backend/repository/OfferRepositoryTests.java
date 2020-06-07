@@ -4,12 +4,13 @@ import static org.hamcrest.Matchers.samePropertyValuesAs;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
-import java.util.List;
-import java.util.Optional;
-
 import com.piisw.backend.entity.Contact;
 import com.piisw.backend.entity.Localization;
 import com.piisw.backend.entity.Offer;
+
+import java.util.List;
+import java.util.Optional;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

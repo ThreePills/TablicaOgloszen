@@ -1,6 +1,7 @@
 package com.piisw.backend.entity;
 
 import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;

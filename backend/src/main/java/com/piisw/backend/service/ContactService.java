@@ -1,11 +1,13 @@
 package com.piisw.backend.service;
 
-import javax.transaction.Transactional;
-
 import com.piisw.backend.entity.Contact;
 import com.piisw.backend.repository.ContactRepository;
-import lombok.AllArgsConstructor;
+
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Service;
+
+import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @Service
