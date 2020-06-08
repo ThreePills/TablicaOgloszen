@@ -8,11 +8,14 @@ import { Offer } from '../model/Offer';
 })
 export class OffersRestService {
   private OFFERS_ENDPOINT = 'http://localhost:8080/offer';
+  private isActive = true;
 
   constructor(private readonly http: HttpClient) {}
 
   findAll(): Observable<Offer[]> {
-    return this.http.get<Offer[]>(`${this.OFFERS_ENDPOINT}/allActive`);
+    return this.http.get<Offer[]>(
+      `${this.OFFERS_ENDPOINT}/list/${this.isActive}`
+    );
   }
 
   deleteOffer(offerId: string) {
